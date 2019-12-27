@@ -1,0 +1,18 @@
+package com.bridgelabz.junitprograms;
+
+import java.util.Scanner;
+
+public class DayOfWeek {
+
+	public static void main(String[] args) {
+		Util util = new Util();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter the year , month and day ");
+		int year = sc.nextInt();
+		int month = sc.nextInt();
+		int day = sc.nextInt();
+		System.out.println(util.dayOfWeek(year, month, day));
+
+	}
+
+}

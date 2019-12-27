@@ -1,0 +1,10 @@
+package com.bridgelabz.functionalprograms;
+
+public class Util {
+	
+	public static double distance(double x,double y) {
+	    double res = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
+		return res;
+	}
+
+}

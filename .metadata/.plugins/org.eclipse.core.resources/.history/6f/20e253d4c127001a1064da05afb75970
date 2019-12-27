@@ -1,0 +1,29 @@
+package com.bridgelabz.algorithmsproblems;
+
+public class Util {
+	
+	public static void find(String str, String str2) {
+		int count=0;
+		if (str.length() == str2.length()) {
+			for (int i = 0; i < str.length(); i++) {
+				//int count = 0;
+				for (int j = 0; j < str2.length(); j++) {
+					if (str.charAt(i)==str2.charAt(j)) {
+						
+						count++;
+
+					}
+				}
+			}
+			if(count == str.length()) {
+				System.out.println("given string was anagram");
+			}else {
+				System.out.println("given string was not anagram!");
+			}
+		}
+		else {
+			System.out.println("length should be equal!");
+		}
+	}
+
+}

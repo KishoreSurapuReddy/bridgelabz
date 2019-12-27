@@ -1,0 +1,108 @@
+package com.bridgelabz.basicprograms;
+
+import java.util.Scanner;
+
+public class BasicPrograms {
+	
+	public void execute() {
+		Util util = new Util();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter the number which program want to execute :");
+		System.out.println("1.Factor 2.FlipACoin 3.HarmonicNumber 4.LeapYear 5.PowerOfTwo 6.ReplaceAString");
+		int number = sc.nextInt();
+		switch(number) {
+		case 1:
+			System.out.println("Enter the number :");
+			int n = sc.nextInt();
+			util.primeFactor(n);
+			break;
+		case 2:
+		    System.out.println("How many times do you want to flip the coin :");
+		    int n1 = sc.nextInt();
+		    util.flipCoin(n1);
+		    break;
+		case 3:
+			System.out.println("Enter the N number: ");
+			int n2 = sc.nextInt();
+			System.out.println(util.harmonic(n2));
+			break;
+		case 4:
+			System.out.println("Enter the year :");
+			int year = sc.nextInt();
+			util.leapYear(year);
+			break;
+		case 5:
+			System.out.println("enter the num:");
+			int num = sc.nextInt();
+			System.out.println("Enter the power :");
+			int power = sc.nextInt();
+			System.out.println(num+" power of "+power+" is :"+util.powerOfTwo(num, power));
+			break;
+		case 6:
+			System.out.println("Enter the username :");
+			String UserName = sc.next();
+			System.out.println(util.stringReplace(UserName));
+			break;
+		default:
+			System.out.println("enter the range between 1-6 only! ");
+    
+		}
+
+	}
+
+	public static void main(String[] args) {
+		BasicPrograms basic = new BasicPrograms();
+		Util util = new Util();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter the number which program want to execute :");
+		System.out.println("1.Factor 2.FlipACoin 3.HarmonicNumber 4.LeapYear 5.PowerOfTwo 6.ReplaceAString");
+		int number = sc.nextInt();
+		switch(number) {
+		case 1:
+			System.out.println("Enter the number :");
+			int n = sc.nextInt();
+			util.primeFactor(n);
+			basic.execute();
+			break;
+		case 2:
+		    System.out.println("How many times do you want to flip the coin :");
+		    int n1 = sc.nextInt();
+		    util.flipCoin(n1);
+		    basic.execute();
+		    break;
+		case 3:
+			System.out.println("Enter the N number: ");
+			int n2 = sc.nextInt();
+			System.out.println(util.harmonic(n2));
+			basic.execute();
+			break;
+		case 4:
+			System.out.println("Enter the year :");
+			int year = sc.nextInt();
+			util.leapYear(year);
+			basic.execute();
+			break;
+		case 5:
+			System.out.println("enter the num:");
+			int num = sc.nextInt();
+			System.out.println("Enter the power :");
+			int power = sc.nextInt();
+			System.out.println(num+" power of "+power+" is :"+util.powerOfTwo(num, power));
+			basic.execute();
+			break;
+		case 6:
+			System.out.println("Enter the username :");
+			String UserName = sc.next();
+			System.out.println(util.stringReplace(UserName));
+			basic.execute();
+			break;
+		default:
+			System.out.println("enter the range between 1-6 only! ");
+			basic.execute();
+			break;
+    
+		}
+
+	}
+
+}

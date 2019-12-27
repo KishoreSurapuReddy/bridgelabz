@@ -1,0 +1,15 @@
+package com.bridgelabz.basicprograms;
+
+import java.util.Scanner;
+
+public class HarmonicNumber {
+	public static void main(String[] args) {
+		Util util = new Util();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the N number: ");
+		int n = sc.nextInt();
+		System.out.println(util.harmonic(n));
+
+	}
+
+}

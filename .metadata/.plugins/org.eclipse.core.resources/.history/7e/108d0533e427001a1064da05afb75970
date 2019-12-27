@@ -1,0 +1,14 @@
+package com.bridgelabz.basicprograms;
+
+import java.util.Scanner;
+
+public class Factor {
+	public static void main(String[] args) {
+		Util u = new Util();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the number :");
+		int n = sc.nextInt();
+		u.primeFactorOf(n);
+	}
+
+}

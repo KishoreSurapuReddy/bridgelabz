@@ -1,0 +1,15 @@
+package com.bridgelabz.basicPrograms;
+
+interface Drawable{  
+    public String say(String name);  
+}  
+  
+public class LambdaExpressionExample2{  
+    public static void main(String[] args) {  
+    	
+    	Drawable d = (name)->{
+    		return name +"hello!";
+    	};
+        System.out.println(d.say("kishore"));
+    }  
+}  

@@ -1,0 +1,31 @@
+package com.bridgelabz.junitprograms;
+
+import java.util.Scanner;
+
+public class MonthlyPayment {
+	
+	static double monthlyPayment(double year,double prin,double rate) {
+		double n = 12 * year;
+		double r = rate / (12*100);
+		double payment = (prin * r) / 1 - Math.pow(1+r, -n);
+		return payment;
+	}
+	static int dayOfWeek(int year , int month , int day) {
+		int y0 = year - (14 - month) / 12;
+		int x = y0 + (y0/4) - (y0/100) + y0/400 ;
+		int m0 = month + 12 * ((14 - month) / 12) - 2 ;
+		int d0 = (day + x + (31*m0) / 12) % 7 ;
+		return d0;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter the year,principle and rate :");
+		double year = sc.nextDouble();
+		double prin = sc.nextDouble();
+		double rate = sc.nextDouble();
+		System.out.println(monthlyPayment(year, prin, rate));
+		System.out.println(dayOfWeek((int)year, (int)prin,(int)rate));
+	}
+
+}

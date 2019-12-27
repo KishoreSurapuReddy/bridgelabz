@@ -1,0 +1,15 @@
+package com.bridgelabz.algorithmsproblems;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class BubbleSort {
+	
+	public static void main(String[] args) {
+		Util util = new Util();
+		int[] arr = {2,3,1,5,8,4,15,1,22,20,16};
+		util.sort(arr);
+
+}
+}

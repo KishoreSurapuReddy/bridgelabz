@@ -1,0 +1,57 @@
+package com.bridgelabz.junitprograms;
+
+import java.util.Scanner;
+
+public class ToBinary {
+    static int[] swaparr = new int[8];
+	static int[] toBinary(int num) {
+		int i = 0;
+		int[] binaryNum = new int[8];
+		while(num != 0) {
+			binaryNum[i] = num % 2 ;
+			num = num / 2;
+			i++;
+		}
+		return binaryNum;
+	}
+
+	private static int[] swap(int[] swaparr) {
+		int temp , j = swaparr.length - 4;
+		for(int i=0;i < 4 ;i++) {
+			temp = swaparr[i];
+			swaparr[i] = swaparr[j];
+			swaparr[j] = temp ;
+			j++;
+		}
+		return swaparr;
+	}
+    static void printArray(int[] binary) {
+    	String str = "";
+    	for( int i = binary.length-1 ; i>=0 ; i--) {
+			System.out.print(binary[i]);
+			str = str + binary[i];
+			for(int j=str.length()-1 ; j>0 ; j--) {
+				int a =0;
+				swaparr[a] = str.charAt(i);
+				a++;
+			}
+		}
+		System.out.println();
+		System.out.println(str);
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter the number :");
+		int num = sc.nextInt();
+		int[] binary = toBinary(num);
+		printArray(binary);
+		for(int j = 0 ; j <= swaparr.length-1; j++) {
+			System.out.print(" "+swaparr[j]);
+		}
+		//System.out.println("after swapping");
+		System.out.println(swap(swaparr));
+		System.out.println();
+	}
+
+}
