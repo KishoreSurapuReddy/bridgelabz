@@ -4,6 +4,13 @@ public class Util {
 	/*
 	 * Function for monthly payment
 	 */
+	
+	/**
+	 * @param year
+	 * @param prin
+	 * @param rate
+	 * @return
+	 */
 	static double monthlyPayment(double year, double prin, double rate) {
 		double n = 12 * year;
 		double r = rate / (12 * 100);
@@ -13,6 +20,13 @@ public class Util {
 
 	/*
 	 * Function for dayOfWeek
+	 */
+	
+	/**
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @return
 	 */
 	static int dayOfWeek(int year, int month, int day) {
 		int y0 = year - (14 - month) / 12;
@@ -25,6 +39,11 @@ public class Util {
 	/*
 	 * Function for squareRoot
 	 * 
+	 */
+	
+	/**
+	 * @param c
+	 * @return
 	 */
 	static double squareRootOf(double c) {
 		double t = c;
@@ -51,6 +70,11 @@ public class Util {
 	/*
 	 * Function for toBinary
 	 */
+	
+	/**
+	 * @param num
+	 * @return
+	 */
 	static int[] toBinary(int num) {
 		String str = "";
 		while (num != 0) {
@@ -74,6 +98,11 @@ public class Util {
 	/*
 	 * Function for toDecimal
 	 */
+	
+	/**
+	 * @param binary
+	 * @return
+	 */
 	static int toDecimal(int[] binary) {
 
 		int dec = 0;
@@ -89,6 +118,11 @@ public class Util {
 
 	/*
 	 * Function for powerofTwo
+	 */
+	
+	/**
+	 * @param d
+	 * @return
 	 */
 	static boolean powerOfTwo(int d) {
 		int i = 0;
