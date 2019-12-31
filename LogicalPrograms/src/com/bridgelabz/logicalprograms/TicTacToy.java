@@ -2,8 +2,6 @@ package com.bridgelabz.logicalprograms;
 
 import java.util.Scanner;
 
-import com.bridgelabz.logicalprograms.Util;
-
 public class TicTacToy {
 
 	public static void main(String[] args) {
@@ -22,6 +20,7 @@ public class TicTacToy {
 						.println("player " + game.currentPlayer() + " enter in empty row and column to place a mark ");
 				row = sc.nextInt();// assigning the value to row and col
 				col = sc.nextInt();
+				sc.close();
 
 			} while (!game.placeMark(row, col));
 			game.changePlayer();
