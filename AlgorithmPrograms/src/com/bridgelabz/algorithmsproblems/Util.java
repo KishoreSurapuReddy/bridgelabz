@@ -7,6 +7,11 @@ public class Util {
 	/*
 	 * Function for anagramdetection
 	 */
+	
+	/**
+	 * @param string1
+	 * @param string2
+	 */
 	public static void anagram(String string1, String string2) {
 		int count = 0;
 		if (string1.length() == string2.length()) {
@@ -32,6 +37,8 @@ public class Util {
 
 	/*
 	 * Function for BinarySearch
+	 * @param string
+	 * @param toCheck
 	 */
 	public static void binarySearch(String[] string, String toCheck) {
 		Arrays.sort(string);
@@ -43,10 +50,14 @@ public class Util {
 	/*
 	 * Function for Bubblesort
 	 */
+	
+	/**
+	 * @param arr
+	 */
 	public static void bubbleSort(int[] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			for (int j = 0; j < arr.length - 1; j++) {
-				if (arr[j] > arr[j + 1]) {
+				if (arr[j] > arr[j+1]) {
 					int temp = arr[j];
 					arr[j] = arr[j + 1];
 					arr[j + 1] = temp;
@@ -60,6 +71,11 @@ public class Util {
 
 	/*
 	 * function for mergesort
+	 */
+	/**
+	 * @param arr
+	 * @param l
+	 * @param r
 	 */
 	static void mergeSort(int[] arr, int l, int r) {
 		if (l < r) {
@@ -114,6 +130,10 @@ public class Util {
 
 	/*
 	 * function for finding primenumbers
+	 */
+	
+	/**
+	 * @param number
 	 */
 	public static void primeNumbersOf(int number) {
 		ArrayList<Integer> list = new ArrayList<Integer>();
@@ -173,6 +193,10 @@ public class Util {
 	/*
 	 * function for insertionsort
 	 */
+	
+	/**
+	 * @param arr
+	 */
 	public static void insertionSort(String[] arr) {
 
 		for (int i = 1; i < arr.length - 1; i++) {
@@ -189,5 +213,140 @@ public class Util {
 			System.out.println(" " + arr[i]);
 		}
 	}
+
+	/*
+	 * funtion for genericbinarysearch
+	 */
+	
+	public static <T extends Comparable<T>> int index( T[] items, T item )
+	  {
+	      return genericbinarySearch( items, item, 0, items.length-1 );
+	  }
+	
+	 public static <T extends Comparable<T>> int genericbinarySearch( T[] items, T key, int low, int high )
+	  {
+	      if ( key == null ) {
+	          return -1;
+	      }
+	    
+	      if( low > high  ) {
+	          return -1;
+	      }
+	     
+	      int mid = low+(high-low)/2;
+	     
+	      if( key.compareTo( items[mid] ) > 0 ) {
+	          return genericbinarySearch(items, key, mid+1, high);
+	      }
+	      else if( key.compareTo( items[mid] ) < 0 ) {
+	          return genericbinarySearch( items, key, low, mid-1 );
+	      }
+	      else {
+	          return mid;
+	      }
+	  }
+
+	/*
+	 * function for genericinsertionsort
+	 */
+	 
+	 public static <T extends Comparable<T>> T[] genericInsertionSort(T[] items) {
+			
+			int size = items.length;
+			for(int i = 1; i < size ;i++) {
+				for(int j = i ;j > 0 ;--j) {
+					if(items[j-1].compareTo(items[j]) > 0) {
+						T temp = items[j-1];
+						items[j-1] = items[j];
+						items[j] = temp;
+						
+					}
+				}
+			}
+			
+			return items;
+			
+		}
+
+	/*
+	 * function for genericbubblesort
+	 */
+	 public static <T extends Comparable<T>> T[] genericBubbleSort(T[] items) {
+			int size = items.length;
+			
+			while(size > 0) {
+				int lastModifiedIndex = 0;
+				for(int i = 1 ; i < size ; i++) {
+					if(items[i-1].compareTo(items[i])>0) {
+						T temp = items[i-1];
+						items[i-1] = items[i];
+						items[i] = temp ;
+					}
+					lastModifiedIndex = i;
+				}
+				size = lastModifiedIndex;
+			}
+			return items;
+			
+		}
+
+	/*
+	 * function for genericmergesort
+	 */ 
+	 public static <T extends Comparable<T>> void merge(T[] items , int l,int r) {
+			if(l < r) {
+				int m = (l+r)/2;
+				merge(items, l, m);
+				merge(items, m+1, r);
+				
+				genericMergeSort(items, l, m, r);
+			}
+			
+		}
+
+		private static <T> T[] genericMergeSort(T[] items, int l, int m, int r) {
+			int n1 = m - l + 1;
+			int n2 = r - m;
+			
+			T[] left = (T[]) new Comparable[n1];
+			T[] right = (T[]) new Comparable[n2];
+			
+			for(int i =0; i<n1 ;i++) {
+				left[i] = items[l + i];
+			}
+			
+			for(int j =0; j<n2 ;j++) {
+				right[j] = items[m + 1+ j];
+			}
+			
+			int leftIndex = 0, rightIndex = 0;
+
+	        // the index we will start at when adding the subarrays back into the main array
+	        int currentIndex = l;
+
+	        // compare each index of the subarrays adding the lowest value to the currentIndex
+	        while (leftIndex < left.length && rightIndex < right.length)
+	        {
+	            if (((Comparable) left[leftIndex]).compareTo(right[rightIndex]) <= 0)
+	            {
+	                items[currentIndex] = left[leftIndex];
+	                leftIndex++;
+	            }
+	            else
+	            {
+	                items[currentIndex] = right[rightIndex];
+	                rightIndex++;
+	            }
+	            currentIndex++;
+	        }
+
+	        // copy remaining elements of leftArray[] if any
+	        while (leftIndex < left.length) items[currentIndex++] = left[leftIndex++];
+
+	        // copy remaining elements of rightArray[] if any
+	        while (rightIndex < right.length) items[currentIndex++] = right[rightIndex++];
+			return items;
+	    }
+
 
 }
