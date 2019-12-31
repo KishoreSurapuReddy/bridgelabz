@@ -4,12 +4,30 @@ import java.util.Scanner;
 
 public class Util {
 	static Scanner sc ;
+
+	/*
+	 * function for distancecalculation
+	 */
 	
+	/**
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public static double distanceOf(double x,double y) {
 	    double res = Math.sqrt(Math.pow(x, 2)+Math.pow(y, 2));
 		return res;
 	}
+
+	/*
+	 * function for quadraticequation
+	 */
 	
+	/**
+	 * @param a
+	 * @param b
+	 * @param c
+	 */
 	static void quadraticEquiation(double a,double b,double c) {
 
 		double delta = b * b - 4.0 * a * c;
@@ -28,7 +46,14 @@ public class Util {
 		}
 		
 	}
+
+	/*
+	 * function for sumofintegers
+	 */
 	
+	/**
+	 * @param arr
+	 */
 	static void sumOfInteger(int[] arr) {
 		int count = 0;
 		for(int i=0;i<arr.length;i++) {
@@ -46,6 +71,14 @@ public class Util {
 		System.out.println("no-of distinct triplets are "+count);
 		return;
 	}
+
+	/*
+	 * function for twodimentionalarray
+	 */
+	
+	/**
+	 * @param arr
+	 */
 	static void twoDimentionArray(int[][] arr) {
 		System.out.println("elements are :");
 		for(int i=0;i<arr.length;i++) {
@@ -56,7 +89,16 @@ public class Util {
 		}
 		
 	}
+
+	/*
+	 * function for temareture of windchill
+	 */
 	
+	/**
+	 * @param t
+	 * @param v
+	 * @return
+	 */
 	static double temparetureOf(double t, double v) {
 		double w = 0;
 		if(t<=50 && v>120 || v<3) {
