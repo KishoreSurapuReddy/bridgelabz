@@ -3,7 +3,13 @@ package com.bridgelabz.basicprograms;
 import java.util.Random;
 
 public class Util {
+	/*
+	 * function for primefactor
+	 */
 	
+	/**
+	 * @param number
+	 */
 	public static void primeFactorOf(int number) {
 		for(int i=1;i<=number;i++) {
 			if(number%i==0) {
@@ -28,7 +34,14 @@ public class Util {
 		}
 		return false;	
 	}
+
+	/*
+	 * function for flipacoin
+	 */
 	
+	/**
+	 * @param n
+	 */
 	static void flipCoin(int n) {
 		 
 		double a1 = 0;
@@ -53,7 +66,15 @@ public class Util {
 	      System.out.println(p1);
 	      System.out.println(p2);
 	}
+
+	/*
+	 * function for harmonicnumber
+	 */
 	
+	/**
+	 * @param n
+	 * @return
+	 */
 	static double harmonicNumber(int n) {
 		
 		int a=1;
@@ -78,7 +99,10 @@ public class Util {
 		}
 		
 	}
-	
+
+	/*
+	 * function for poweroftwo
+	 */
 	static int powerOfTwo(int num , int power) {
 		int a1=1;
 		for(int j=1;j<=power;j++) {
@@ -87,7 +111,10 @@ public class Util {
 		}
 		return a1;
 	}
-	
+
+	/*
+	 * function for stringreplace
+	 */
 	static String stringReplace(String UserName) {
 		String str = "Hello";
 		str = str+" "+UserName;
