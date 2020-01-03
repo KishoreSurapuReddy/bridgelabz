@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+/home/bridgelabsz/eclipse-workspace/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-830982775.index
-4030708863.index
-4010018513.index
-567752900.index
-1081405338.index
-1701202539.index
