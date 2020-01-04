@@ -1,6 +1,7 @@
 package com.bridgelabz.datastructures;
 
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * @author kishorereddy
@@ -21,13 +22,9 @@ public class Utility<T extends Comparable<T>> {
 	 */
 	Scanner scanner = new Scanner(System.in);
 	/*
-	 * Initializing the size of stack
+	 * creating the stack with character type
 	 */
-	static int capacity = 10;
-	/*
-	 * creating the stack with the size of capacity
-	 */
-	private static Object[] stack = new Object[capacity];
+	static Stack<Character> stack = new Stack<Character>();
 	/*
 	 * initialize the top of stack as zero
 	 */
@@ -360,23 +357,10 @@ public class Utility<T extends Comparable<T>> {
 	 * @param character
 	 */
 	public void push(T character) {
-		if (capacity == top) {
-			expandStack();
-		} else {
-			stack[top] = character;
-			top++;
-		}
 
-	}
+		stack.push((Character) character);
+		top++;
 
-	/*
-	 * function to implement expand the size of stack
-	 */
-	private void expandStack() {
-		Object[] newstack = new Object[capacity * 2];
-		System.arraycopy(stack, 0, newstack, 0, top);
-		capacity *= 2;
-		stack = newstack;
 	}
 
 	/*
@@ -392,8 +376,7 @@ public class Utility<T extends Comparable<T>> {
 			return null;
 		}
 		@SuppressWarnings("unchecked")
-		T popElement = (T) stack[top--];
-		stack[top] = null;
+		T popElement = (T) stack.pop();
 		return popElement;
 
 	}
@@ -407,20 +390,20 @@ public class Utility<T extends Comparable<T>> {
 	public T peekStack() {
 
 		@SuppressWarnings("unchecked")
-		T peekElement = (T) stack[top];
+		T peekElement = (T) stack.peek();
 		return peekElement;
 
 	}
 
 	/*
-	 * function to implement size of statck
+	 * function to implement size of stack
 	 */
 	/**
 	 * @return size of stack
 	 */
 	public static int sizeOfStack() {
 
-		return top;
+		return stack.size();
 
 	}
 
@@ -430,14 +413,9 @@ public class Utility<T extends Comparable<T>> {
 	/**
 	 * @return stack data
 	 */
-	public static String toStringStack() {
-		StringBuffer stringbuffer = new StringBuffer();
-		stringbuffer.append(" { ");
-		for (int index = 0; index < top; index++) {
-			stringbuffer.append(stack[index] + " , ");
-		}
-		stringbuffer.append(" }");
-		return stringbuffer.toString();
+	public static Stack<Character> toStringStack() {
+
+		return stack;
 
 	}
 
@@ -448,10 +426,8 @@ public class Utility<T extends Comparable<T>> {
 	 * @return weather empty or not
 	 */
 	public boolean isEmptyStack() {
-		if (top == 0) {
-			return true;
-		}
-		return false;
+
+		return stack.empty();
 	}
 
 }
