@@ -22,6 +22,10 @@ public class Utility<T extends Comparable<T>> {
 	 */
 	Scanner scanner = new Scanner(System.in);
 	/*
+	 * initializing stack capacity
+	 */
+	private int capacity = 10;
+	/*
 	 * creating the stack with character type
 	 */
 	static Stack<Character> stack = new Stack<Character>();
@@ -358,8 +362,16 @@ public class Utility<T extends Comparable<T>> {
 	 */
 	public void push(T character) {
 
-		stack.push((Character) character);
-		top++;
+		try {
+			stack.push((Character) character);
+			top++;
+		} catch (Exception e) {
+			System.out.println("stack is full");
+		}
+
+		if (stack.capacity() == stack.size()) {
+			stack.ensureCapacity(capacity * 2);
+		}
 
 	}
 
@@ -413,9 +425,9 @@ public class Utility<T extends Comparable<T>> {
 	/**
 	 * @return stack data
 	 */
-	public static Stack<Character> toStringStack() {
+	public static String toStringStack() {
 
-		return stack;
+		return stack.toString();
 
 	}
 
