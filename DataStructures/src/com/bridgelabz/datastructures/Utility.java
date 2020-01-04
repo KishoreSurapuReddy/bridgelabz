@@ -2,12 +2,36 @@ package com.bridgelabz.datastructures;
 
 import java.util.Scanner;
 
+/**
+ * @author kishorereddy
+ *
+ * @param <T>
+ */
 public class Utility<T extends Comparable<T>> {
 
 	public static Node head; // head of list
+	/*
+	 * initialize the size of list as zero
+	 */
 	private static int size = 0;
+
 	private static Node tail;
+	/*
+	 * creating the scanner object
+	 */
 	Scanner scanner = new Scanner(System.in);
+	/*
+	 * Initializing the size of stack
+	 */
+	static int capacity = 10;
+	/*
+	 * creating the stack with the size of capacity
+	 */
+	private static Object[] stack = new Object[capacity];
+	/*
+	 * initialize the top of stack as zero
+	 */
+	static int top = 0;
 
 	/*
 	 * function for inserting element at particular position in the list
@@ -327,6 +351,107 @@ public class Utility<T extends Comparable<T>> {
 			node = null;
 			size -= 1;
 		}
+	}
+
+	/*
+	 * function to implement push the element to the stack
+	 */
+	/**
+	 * @param character
+	 */
+	public void push(T character) {
+		if (capacity == top) {
+			expandStack();
+		} else {
+			stack[top] = character;
+			top++;
+		}
+
+	}
+
+	/*
+	 * function to implement expand the size of stack
+	 */
+	private void expandStack() {
+		Object[] newstack = new Object[capacity * 2];
+		System.arraycopy(stack, 0, newstack, 0, top);
+		capacity *= 2;
+		stack = newstack;
+	}
+
+	/*
+	 * function to implement pop the element from the stack
+	 */
+	/**
+	 * @param character
+	 * @return pop element
+	 */
+	public T popCharacter(char character) {
+		if (isEmptyStack()) {
+			System.out.println("stack is empty and we can not pop ");
+			return null;
+		}
+		@SuppressWarnings("unchecked")
+		T popElement = (T) stack[top--];
+		stack[top] = null;
+		return popElement;
+
+	}
+
+	/*
+	 * function to implement peek the top of element from stack
+	 */
+	/**
+	 * @return top of stack element
+	 */
+	public T peekStack() {
+
+		@SuppressWarnings("unchecked")
+		T peekElement = (T) stack[top];
+		return peekElement;
+
+	}
+
+	/*
+	 * function to implement size of statck
+	 */
+	/**
+	 * @return size of stack
+	 */
+	public static int sizeOfStack() {
+
+		return top;
+
+	}
+
+	/*
+	 * function to implement return the stack data
+	 */
+	/**
+	 * @return stack data
+	 */
+	public static String toStringStack() {
+		StringBuffer stringbuffer = new StringBuffer();
+		stringbuffer.append(" { ");
+		for (int index = 0; index < top; index++) {
+			stringbuffer.append(stack[index] + " , ");
+		}
+		stringbuffer.append(" }");
+		return stringbuffer.toString();
+
+	}
+
+	/*
+	 * function to implement weather stack is empty or not
+	 */
+	/**
+	 * @return weather empty or not
+	 */
+	public boolean isEmptyStack() {
+		if (top == 0) {
+			return true;
+		}
+		return false;
 	}
 
 }
