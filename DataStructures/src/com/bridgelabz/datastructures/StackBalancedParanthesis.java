@@ -57,6 +57,15 @@ public class StackBalancedParanthesis {
 		 * assign the stack result to result
 		 */
 		boolean result = checkCharacter(expression);
+		/*
+		 * printing stack
+		 */
+		System.out.println(Utility.toStringStack());
+		/*
+		 * size of stack
+		 */
+		System.out.println(Utility.sizeOfStack());
+
 		if (result == true) {
 			/*
 			 * if stack is empty expression was balanced
