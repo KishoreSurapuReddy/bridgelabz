@@ -52,11 +52,7 @@ public class StackBalancedParanthesis {
 		/*
 		 * given string expression
 		 */
-		String expression = "(5+6)∗(7+8)/(4+3)(5+6)∗(7+8)/*((4+3)";
-		/*
-		 * printing the stack
-		 */
-		System.out.println(Utility.toStringStack());
+		String expression = "(5+6)∗(7+8)/(4+3)(5+6)∗(7+8)/*(4+3)";
 		/*
 		 * assign the stack result to result
 		 */
