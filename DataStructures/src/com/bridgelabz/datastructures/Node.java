@@ -1,5 +1,5 @@
 /*
- * 
+ * it will initialize the node in the list
 */
 package com.bridgelabz.datastructures;
 
