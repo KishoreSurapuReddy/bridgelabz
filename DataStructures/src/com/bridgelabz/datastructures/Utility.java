@@ -1,5 +1,7 @@
 package com.bridgelabz.datastructures;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -33,6 +35,14 @@ public class Utility<T extends Comparable<T>> {
 	 * initialize the top of stack as zero
 	 */
 	static int top = 0;
+	/*
+	 * creating the queue with string type
+	 */
+	static Queue<String> queue = new LinkedList<String>();
+	/*
+	 * initialize the bank amount with 100000
+	 */
+	private int bankAmount = 100000;
 
 	/*
 	 * function for inserting element at particular position in the list
@@ -440,6 +450,156 @@ public class Utility<T extends Comparable<T>> {
 	public boolean isEmptyStack() {
 
 		return stack.empty();
+	}
+
+	/*
+	 * function to implement adding in queue
+	 */
+	public void enQueue() {
+		int count = 0;
+		try {
+			System.out.println("enter how many customers are there :");
+			count = scanner.nextInt();
+		} catch (Exception e) {
+			System.out.println("enter in digits only...");
+		}
+		try {
+			for (int index = 0; index <= count; index++) {
+				System.out.println("  Enter your Name :  ");
+				queue.add(scanner.next());
+			}
+		} catch (Exception e) {
+			System.out.println("enter the name only...");
+		}
+
+	}
+
+	/*
+	 * function to implement deposit amount
+	 */
+	/**
+	 * @param customername
+	 * @param amount
+	 * @return total amount
+	 */
+	private int depositCash(String customername, int amount) {
+
+		bankAmount += amount;
+		return bankAmount;
+
+	}
+
+	/*
+	 * function to implement withdraw cash
+	 */
+	/**
+	 * @param customername
+	 * @param amount
+	 * @return total amount
+	 */
+	private int withDrawCash(String customername, int amount) {
+
+		bankAmount -= amount;
+
+		return bankAmount;
+
+	}
+
+	/*
+	 * function to implement dequeue in queue
+	 */
+	/**
+	 * @return dequeue element
+	 */
+	public String deQueue() {
+		do {
+			String customername = null;
+
+			for (int index = queue.size(); index > 0; index--) {
+				customername = queue.peek();
+			}
+
+			int choice = 0;
+			int amount = 0;
+			System.out.println("Welcome to " + customername);
+
+			try {
+				System.out.println("select the choice 1.WithdrawMoney 2.DepositMoney ");
+				choice = scanner.nextInt();
+			} catch (Exception e) {
+				System.out.println("Enter details correctly... ");
+			}
+
+			switch (choice) {
+
+			case 1:
+				try {
+					System.out.println("Enter the amount to withdraw :");
+					amount = scanner.nextInt();
+				} catch (Exception e) {
+					System.out.println("enter amount digits...");
+				}
+
+				if (amount <= 50000) {
+					System.out.println(customername + " has withdraw from account ");
+					withDrawCash(customername, amount);
+					System.out.println(customername + " withdraw amount is :" + amount);
+					System.out.println("Final bank amount is : " + bankAmount);
+					break;
+
+				} else {
+					System.out.println("daily withdraw amount limit is < 50000 only");
+				}
+
+			case 2:
+
+				try {
+					System.out.println("Enter the amount to depost :");
+					amount = scanner.nextInt();
+
+				} catch (Exception e) {
+					System.out.println("enter amount in digits...");
+				}
+
+				System.out.println(customername + " has deposited amount into bank ");
+				depositCash(customername, amount);
+				System.out.println(customername + " deposited amount is :" + amount);
+				System.out.println("Final bank amount is : " + bankAmount);
+				break;
+
+			default:
+
+				System.out.println("Select only range between 1 - 2");
+				break;
+			}
+			return queue.remove();
+
+		} while (true);
+
+	}
+
+	/*
+	 * function to implement queue size
+	 */
+	/**
+	 * @return size of queue
+	 */
+	public int queueSize() {
+
+		return queue.size();
+
+	}
+
+	/*
+	 * function to implement queue is empty or not
+	 */
+	/**
+	 * @return queue is empty or not
+	 */
+	public boolean queueIsEmpty() {
+
+		return queue.isEmpty();
+
 	}
 
 }
