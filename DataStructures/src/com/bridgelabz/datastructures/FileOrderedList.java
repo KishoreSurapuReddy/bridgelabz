@@ -23,8 +23,13 @@ public class FileOrderedList {
 		 */
 		Utility<Integer> util = new Utility<>();
 
-		System.out.println("enter the number how many want to add :");
-		int number = util.scanner.nextInt();
+		int number = 0;
+		try {
+			System.out.println("enter the number how many want to add :");
+			number = util.scanner.nextInt();
+		} catch (Exception e) {
+			System.out.println("enter in digits only...");
+		}
 		// asking the user to assign the size of list
 
 		System.out.println("enter number :");
@@ -35,13 +40,22 @@ public class FileOrderedList {
 			 * taking the user inputs from the keyboard and adding the elements through this
 			 * function
 			 */
-			util.addOrderedElement(util.scanner.nextInt());
+			try {
+				util.addOrderedElement(util.scanner.nextInt());
+			} catch (Exception e) {
+				System.out.println("enter only int type of data...");
+			}
 		}
 		// printing the list
 		util.printList();
-		System.out.println("enter number to search :");
 		// asking user to enter the element to search in the list
-		int searchnum = util.scanner.nextInt();
+		int searchnum = 0;
+		try {
+			System.out.println("enter number to search :");
+			searchnum = util.scanner.nextInt();
+		} catch (Exception e) {
+			System.out.println("enter only int type of data...");
+		}
 		/*
 		 * calling function for adding and removing elements from list
 		 */
