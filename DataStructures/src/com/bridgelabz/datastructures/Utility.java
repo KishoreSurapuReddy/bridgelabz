@@ -298,7 +298,7 @@ public class Utility<T extends Comparable<T>> {
 	 */
 	public boolean searchElement(T find) {
 		Node node = head;
-		while (node.next != null) {
+		while (node != null) {
 			if (node.data.equals(find)) {
 				return true;
 			}
