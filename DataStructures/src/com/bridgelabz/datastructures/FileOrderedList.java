@@ -25,7 +25,7 @@ public class FileOrderedList {
 
 		int number = 0;
 		try {
-			System.out.println("enter the number how many want to add :");
+			System.out.println("enter the number how many numbers want to add :");
 			number = util.scanner.nextInt();
 		} catch (Exception e) {
 			System.out.println("enter in digits only...");
