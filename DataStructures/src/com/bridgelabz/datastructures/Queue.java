@@ -1,6 +1,6 @@
 /*
- *Purpose:take a queue and and customers into it and according to queue
- * and customer option performing withdraw and deposit and finally display total
+ *Purpose:take a queue and add customers into it and according to queue
+ * and customer option performing withdraw and deposit operation and finally display total
  *  of bank amount and make queue as balanced
 */
 package com.bridgelabz.datastructures;
@@ -32,7 +32,7 @@ public class Queue {
 		/*
 		 * Repeat until queue get null
 		 */
-		while(!util.queueIsEmpty());
+		while(!util.isQueueEmpty());
 	}
 
 }
