@@ -1,5 +1,5 @@
 /*
- *Purpose: it will take the arithmetic expression and it will check the each
+ *Purpose: it will take the arithmetic expression as a input and it will check the each
  *  character in expression if it is '(' added to stack , if it is ')' 
  *  pop from stack
 */
