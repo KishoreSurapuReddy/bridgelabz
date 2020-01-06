@@ -41,7 +41,7 @@ public class FileUnOrderedList {
 			FileWriter filewriter = new FileWriter(file);
 
 			// fileWriter to write the content into the file
-			System.out.println("the size of list :" + Utility.size());
+			System.out.println("the size of list :" + Utility.sizeOfList());
 
 			System.out.println("enter the word to search :");
 
@@ -53,7 +53,7 @@ public class FileUnOrderedList {
 				util.removeElement(find);
 				// it will remove the element from the list
 				int n = 0;
-				while (n < Utility.size()) {
+				while (n < Utility.sizeOfList()) {
 					// it will fetch the element from the list and write into file
 					// it will clear the stream by flush
 					filewriter.write(util.pop(0) + " ");
@@ -67,7 +67,7 @@ public class FileUnOrderedList {
 				// if the element not found in the list it will add to
 				// the list
 				int n = 0;
-				while (n < Utility.size()) {
+				while (n < Utility.sizeOfList()) {
 					filewriter.write(util.pop(0) + " ");
 					filewriter.flush();
 					n++;
