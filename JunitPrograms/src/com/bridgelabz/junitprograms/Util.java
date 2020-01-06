@@ -4,7 +4,7 @@ public class Util {
 	/*
 	 * Function for monthly payment
 	 */
-	
+
 	/**
 	 * @param year
 	 * @param prin
@@ -21,7 +21,7 @@ public class Util {
 	/*
 	 * Function for dayOfWeek
 	 */
-	
+
 	/**
 	 * @param year
 	 * @param month
@@ -40,7 +40,7 @@ public class Util {
 	 * Function for squareRoot
 	 * 
 	 */
-	
+
 	/**
 	 * @param c
 	 * @return
@@ -70,7 +70,7 @@ public class Util {
 	/*
 	 * Function for toBinary
 	 */
-	
+
 	/**
 	 * @param num
 	 * @return
@@ -98,7 +98,7 @@ public class Util {
 	/*
 	 * Function for toDecimal
 	 */
-	
+
 	/**
 	 * @param binary
 	 * @return
@@ -119,7 +119,7 @@ public class Util {
 	/*
 	 * Function for powerofTwo
 	 */
-	
+
 	/**
 	 * @param d
 	 * @return
