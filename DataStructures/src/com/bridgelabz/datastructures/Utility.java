@@ -1,5 +1,7 @@
 package com.bridgelabz.datastructures;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -45,6 +47,14 @@ public class Utility<T extends Comparable<T>> {
 	private int bankAmount = 100000;
 
 	/*
+	 * creating dequeue with character type
+	 */
+	Deque<Character> deque = new ArrayDeque<Character>();
+
+	int rear = -1;
+	int front = -1;
+
+	/*
 	 * function for inserting element at particular position in the list
 	 */
 	/**
@@ -87,7 +97,7 @@ public class Utility<T extends Comparable<T>> {
 	/**
 	 * @return size
 	 */
-	public static int size() {
+	public static int sizeOfList() {
 		return size;
 	}
 
@@ -128,7 +138,7 @@ public class Utility<T extends Comparable<T>> {
 	/**
 	 * @return empty or not
 	 */
-	public static boolean isEmpty() {
+	public static boolean isListEmpty() {
 		Node node = head;
 		if (node == null) {
 			return true;
@@ -596,9 +606,107 @@ public class Utility<T extends Comparable<T>> {
 	/**
 	 * @return queue is empty or not
 	 */
-	public boolean queueIsEmpty() {
+	public boolean isQueueEmpty() {
 
 		return queue.isEmpty();
+
+	}
+
+	/*
+	 * function to implement add character to dequeue in rear end
+	 */
+	/**
+	 * @param data
+	 */
+	public void addRear(char data) {
+		if (rear == -1) {
+			rear = 0;
+			front = 0;
+		}
+		deque.addLast(data);
+		rear++;
+	}
+
+	/*
+	 * function to implement add character to dequeue in front end
+	 */
+	/**
+	 * @param data
+	 */
+	public void addFront(char data) {
+		if (front == -1) {
+			front = 0;
+			rear = 0;
+		}
+		deque.addFirst(data);
+		front++;
+	}
+
+	/*
+	 * function to implement remove character at front end
+	 */
+	/**
+	 * @param data
+	 */
+	public void removeFront(char data) {
+
+		if (front == -1) {
+			System.out.println("we can not remove element");
+		} else {
+			deque.removeFirst();
+		}
+
+	}
+
+	/*
+	 * function to implement remove character at rear end
+	 */
+	/**
+	 * @param data
+	 */
+	public void removeRear(char data) {
+		if (rear == -1) {
+			System.out.println("we can not remove element");
+		} else {
+			deque.removeLast();
+		}
+
+	}
+
+	/*
+	 * function to implement return the size of dequeue
+	 */
+	/**
+	 * @return size of dequeue
+	 */
+	public int deQueueSize() {
+
+		return deque.size();
+
+	}
+
+	/*
+	 * function to implement toString() to get the data 
+	 */
+	/**
+	 * @return data
+	 */
+	@SuppressWarnings("unchecked")
+	public T deQueueToString() {
+		
+		return (T) deque.toString();
+		
+	}
+
+	/*
+	 * function to implement dequeue is empty or not
+	 */
+	/**
+	 * @return isDequeueEmpty or not
+	 */
+	public boolean isDequeEmpty() {
+
+		return deque.isEmpty();
 
 	}
 
