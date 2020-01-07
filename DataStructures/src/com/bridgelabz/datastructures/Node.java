@@ -10,12 +10,15 @@ package com.bridgelabz.datastructures;
 public class Node {
 	// constructor for Node class
 	//
+	Object data;
+	Node next;
+	Node left,right;
+	
 	public Node(Object data) {
 		super();
 		this.data = data;
 		this.next = null;
+		this.left = this.right = null;
 	}
 
-	Object data;
-	Node next;
 }
