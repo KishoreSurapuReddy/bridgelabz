@@ -1,6 +1,7 @@
 package com.bridgelabz.datastructures;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -14,7 +15,7 @@ import java.util.Stack;
  */
 public class Utility<T extends Comparable<T>> {
 
-	public static Node head; // head of list
+	public static Node head ,left,right; // head of list
 	/*
 	 * initialize the size of list as zero
 	 */
@@ -686,16 +687,16 @@ public class Utility<T extends Comparable<T>> {
 	}
 
 	/*
-	 * function to implement toString() to get the data 
+	 * function to implement toString() to get the data
 	 */
 	/**
 	 * @return data
 	 */
 	@SuppressWarnings("unchecked")
 	public T deQueueToString() {
-		
+
 		return (T) deque.toString();
-		
+
 	}
 
 	/*
@@ -708,6 +709,202 @@ public class Utility<T extends Comparable<T>> {
 
 		return deque.isEmpty();
 
+	}
+
+	/*
+	 * function to implement finding primenumbers of range
+	 */
+	/**
+	 * 
+	 */
+	static ArrayList<Integer> list = new ArrayList<Integer>();
+	static ArrayList<Integer> anagramnumbers = new ArrayList<Integer>();
+
+	public static void findPrimeNumbers(int range) {
+		for (int number = 0; number <= range; number++) {
+			int count = 0;
+			if (number == 0 && number == 1) {
+
+			} else {
+				for (int divisiblenum = 1; divisiblenum <= number; divisiblenum++) {
+					if (number % divisiblenum == 0) {
+						count++;
+					}
+				}
+			}
+			if (count == 2) {
+				// System.out.println("prime numbers are :"+number);
+				list.add(number);
+			}
+
+		}
+
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = i + 1; j < list.size(); j++) {
+				if (primeAnagram(list.get(i), list.get(j))) {
+					anagramnumbers.add(list.get(i));
+					anagramnumbers.add(list.get(j));
+				}
+			}
+		}
+
+		/*
+		 * for(int i =0;i<anagramnumbers.size();i++) {
+		 * System.out.println("anagram "+anagramnumbers.get(i)); }
+		 */
+	}
+
+	/*
+	 * function to implement finding anagrams
+	 */
+	/**
+	 * @param number1
+	 * @param number2
+	 * @return number
+	 */
+	public static boolean primeAnagram(int number1, int number2) {
+
+		int[] a = countOf(number1);
+		int[] b = countOf(number2);
+
+		for (int i = 0; i < b.length; i++) {
+			if (a[i] != b[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/*
+	 * function to implement count of int number
+	 */
+	/**
+	 * @param number
+	 * @return count
+	 */
+	private static int[] countOf(int number) {
+		int[] count = new int[10];
+		int temp = number;
+		while (temp != 0) {
+			int r = temp % 10;
+			count[r]++;
+
+			temp = temp / 10;
+		}
+		// System.out.println("count is :"+Arrays.toString(count));
+		return count;
+	}
+
+	/*
+	 * initializing size of twodimentionalarray
+	 */
+	static int rowno = 12;
+	static int colno = 13;
+	static int[][] twodArray = new int[rowno][colno];
+
+	/*
+	 * function to implement twodimentionalarray
+	 */
+	public static void twoDimentionalArray() {
+		// int rowno = 12;
+		// int colno = 13;
+		// int[][] twodArray = new int[rowno][colno];
+		int index = 0;
+		for (int row = 0; row < rowno; row++) {
+			for (int col = 0; col < colno; col++) {
+				twodArray[row][col] = anagramnumbers.get(index);
+				index++;
+			}
+		}
+
+		for (int row = 0; row < rowno; row++) {
+			for (int col = 0; col < colno; col++) {
+				System.out.println(" anagram numbers are : " + twodArray[row][col]);
+			}
+		}
+	}
+
+	/*
+	 * function to implement pushing node into stack
+	 */
+	public static void pushStack() {
+
+		for (int row = 0; row < rowno; row++) {
+			for (int col = 0; col < colno; col++) {
+
+				Node new_node = new Node(twodArray[row][col]);
+
+				if (head == null) {
+					head = new_node;
+				} else {
+					Node node = head;
+					new_node.next = node;
+					node = new_node;
+				}
+
+			}
+
+		}
+
+	}
+
+	/*
+	 * function to implement retrieving elememnt from stack
+	 */
+
+	public static void popStack() {
+		StringBuffer string = new StringBuffer();
+		Node node = head;
+		if (head == null) {
+			System.out.println("stack is empty ");
+		}
+		string.append("[");
+		while (node != null) {
+			string.append(head.data);
+			node = node.next;
+			string.append(" ,");
+		}
+		string.append("]");
+		System.out.println("elements are :" + string.toString());
+	}
+
+	/*
+	 * function to implement enqueue of prime numbers
+	 */
+	public static void enQueuePrime() {
+		
+		for (int row = 0; row < rowno; row++) {
+			for (int col = 0; col < colno; col++) {
+				Node new_node = new Node(twodArray[row][col]);
+				if(right == null) {
+					left = right = new_node;
+				}else {
+					right.next = new_node ;
+					right  = new_node ;
+				}
+			}
+		}
+	}
+
+	/*
+	 * function to implement dequeue of prime numbers
+	 */
+	public static void deQueuePrime() {
+		
+		StringBuffer string = new StringBuffer();
+		Node node = left;
+		if (left == null) {
+			System.out.println("queue is empty ");
+		}
+		string.append("[");
+		while (node != null) {
+			string.append(left.data);
+			node = node.next;
+			string.append(" ,");
+		}
+		string.append("]");
+		System.out.println("elements are :" + string.toString());
+		
 	}
 
 }
