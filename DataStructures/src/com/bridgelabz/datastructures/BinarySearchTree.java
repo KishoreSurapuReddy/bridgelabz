@@ -66,6 +66,7 @@ public class BinarySearchTree {
 	/*
 	 * function to implemet making tree as ordered
 	 */
+	
 	public void inOrder() {
 		makeOrdered(root);
 	}
@@ -112,10 +113,15 @@ public class BinarySearchTree {
 		Utility<Integer> util = new Utility<Integer>();
 		BinarySearchTree binary = new BinarySearchTree();
 		System.out.println("enter the number how many nodes want to add :");
-		int number = util.scanner.nextInt();
-		System.out.println("enter the nodes :");
-		for (int index = 1; index <= number; index++) {
-			binary.insertNode(util.scanner.nextInt());
+		int number = 0;
+		try {
+			number = util.scanner.nextInt();
+			System.out.println("enter the nodes :");
+			for (int index = 1; index <= number; index++) {
+				binary.insertNode(util.scanner.nextInt());
+			}
+		} catch (Exception e) {
+			System.out.println("enter int type of data only...");
 		}
 		binary.inOrder();
 		int total = binary.noOfTrees(number);
