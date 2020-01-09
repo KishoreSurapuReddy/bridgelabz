@@ -62,7 +62,7 @@ public class Utility<T extends Comparable<T>> {
 	/*
 	 * initialize array as monthdays
 	 */
-	static int[] monthdays = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	static int[] monthdays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 	/*
 	 * function for inserting element at particular position in the list
@@ -846,9 +846,9 @@ public class Utility<T extends Comparable<T>> {
 				if (head == null) {
 					head = new_node;
 				} else {
-					Node node = head;
-					new_node.next = node;
-					node = new_node;
+					//Node node = head;
+					new_node.next = head;
+					head = new_node;
 				}
 
 			}
@@ -869,12 +869,12 @@ public class Utility<T extends Comparable<T>> {
 		}
 		string.append("[");
 		while (node != null) {
-			string.append(head.data);
+			string.append(node.data);
 			node = node.next;
 			string.append(" ,");
 		}
 		string.append("]");
-		System.out.println("elements are :" + string.toString());
+		System.out.println("stack elements are :" + string.toString());
 	}
 
 	/*
@@ -890,6 +890,7 @@ public class Utility<T extends Comparable<T>> {
 				} else {
 					right.next = new_node;
 					right = new_node;
+					
 				}
 			}
 		}
@@ -907,12 +908,12 @@ public class Utility<T extends Comparable<T>> {
 		}
 		string.append("[");
 		while (node != null) {
-			string.append(left.data);
+			string.append(node.data);
 			node = node.next;
 			string.append(" ,");
 		}
 		string.append("]");
-		System.out.println("elements are :" + string.toString());
+		System.out.println("queue elements are :" + string.toString());
 
 	}
 
