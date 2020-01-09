@@ -829,34 +829,31 @@ public class Utility<T extends Comparable<T>> {
 		for (int row = 0; row < rowno; row++) {
 			for (int col = 0; col < colno; col++) {
 				System.out.println(" anagram numbers are : " + twodArray[row][col]);
+
+				pushStack(twodArray[row][col]);
+				enQueuePrime(twodArray[row][col]);
 			}
 		}
+		popStack();
+		deQueuePrime();
 	}
 
 	/*
 	 * function to implement pushing node into stack
 	 */
-	public static void pushStack() {
+	public static void pushStack(int twodArray2) {
 
-		for (int row = 0; row < rowno; row++) {
-			for (int col = 0; col < colno; col++) {
+		Node new_node = new Node(twodArray2);
 
-				Node new_node = new Node(twodArray[row][col]);
-
-				if (head == null) {
-					head = new_node;
-				} else {
-					//Node node = head;
-					new_node.next = head;
-					head = new_node;
-				}
-
-			}
-
+		if (head == null) {
+			head = new_node;
+		} else {
+			// Node node = head;
+			new_node.next = head;
+			head = new_node;
 		}
 
 	}
-
 	/*
 	 * function to implement retrieving elememnt from stack
 	 */
@@ -880,20 +877,17 @@ public class Utility<T extends Comparable<T>> {
 	/*
 	 * function to implement enqueue of prime numbers
 	 */
-	public static void enQueuePrime() {
+	public static void enQueuePrime(int twodArray2) {
 
-		for (int row = 0; row < rowno; row++) {
-			for (int col = 0; col < colno; col++) {
-				Node new_node = new Node(twodArray[row][col]);
-				if (right == null) {
-					left = right = new_node;
-				} else {
-					right.next = new_node;
-					right = new_node;
-					
-				}
-			}
+		Node new_node = new Node(twodArray2);
+		if (right == null) {
+			left = right = new_node;
+		} else {
+			right.next = new_node;
+			right = new_node;
+
 		}
+
 	}
 
 	/*
