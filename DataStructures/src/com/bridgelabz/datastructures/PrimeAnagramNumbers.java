@@ -17,10 +17,6 @@ public class PrimeAnagramNumbers {
 		int range = util.scanner.nextInt();
 		Utility.findPrimeNumbers(range);
 		Utility.twoDimentionalArray();
-		Utility.pushStack();
-		Utility.popStack();
-		Utility.enQueuePrime();
-		Utility.deQueuePrime();
 
 	}
 
