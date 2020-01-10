@@ -841,6 +841,9 @@ public class Utility<T extends Comparable<T>> {
 	/*
 	 * function to implement pushing node into stack
 	 */
+	/**
+	 * @param twodArray2
+	 */
 	public static void pushStack(int twodArray2) {
 
 		Node new_node = new Node(twodArray2);
@@ -876,6 +879,9 @@ public class Utility<T extends Comparable<T>> {
 
 	/*
 	 * function to implement enqueue of prime numbers
+	 */
+	/**
+	 * @param twodArray2
 	 */
 	public static void enQueuePrime(int twodArray2) {
 
@@ -921,6 +927,9 @@ public class Utility<T extends Comparable<T>> {
 	/*
 	 * taking row
 	 */
+	/**
+	 * 
+	 */
 	public static void row() {
 		for (int row = 0; row < calander.length; row++) {
 			col(row);
@@ -929,6 +938,9 @@ public class Utility<T extends Comparable<T>> {
 
 	/*
 	 * taking coloumn
+	 */
+	/**
+	 * @param row
 	 */
 	public static void col(int row) {
 		for (int col = 0; col < calander[row].length; col++) {
@@ -939,6 +951,9 @@ public class Utility<T extends Comparable<T>> {
 	/*
 	 * function to displaying calander table
 	 */
+	/**
+	 * @param month
+	 */
 	public static void displayCalTable(int month) {
 		System.out.println("       sun     mon     tue     wed      thu     fri    sat ");
 		printRow(month);
@@ -946,6 +961,9 @@ public class Utility<T extends Comparable<T>> {
 
 	/*
 	 * printing row of table
+	 */
+	/**
+	 * @param month
 	 */
 	public static void printRow(int month) {
 		for (int row = 0; row < calander.length; row++) {
@@ -956,6 +974,10 @@ public class Utility<T extends Comparable<T>> {
 
 	/*
 	 * printing coloumn of table
+	 */
+	/**
+	 * @param row
+	 * @param month
 	 */
 	public static void printCol(int row, int month) {
 		for (int col = 0; col < calander[row].length; col++) {
@@ -972,6 +994,9 @@ public class Utility<T extends Comparable<T>> {
 
 	/*
 	 * function to implement making a calander month
+	 */
+	/**
+	 * @param day
 	 */
 	public static void makeCalander(int day) {
 		int day1 = 1;
@@ -990,6 +1015,12 @@ public class Utility<T extends Comparable<T>> {
 	/*
 	 * function to implement day of week
 	 */
+	/**
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @return weed day
+	 */
 	static int dayOfWeek(int year, int month, int day) {
 		int y0 = year - (14 - month) / 12;
 		int x = y0 + (y0 / 4) - (y0 / 100) + (y0 / 400);
@@ -1000,6 +1031,10 @@ public class Utility<T extends Comparable<T>> {
 
 	/*
 	 * function to implement display calander
+	 */
+	/**
+	 * @param month
+	 * @param year
 	 */
 	public static void displayCalander(int month, int year) {
 		int day = 1;
