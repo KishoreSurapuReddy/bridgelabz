@@ -10,9 +10,9 @@ package com.bridgelabz.datastructures;
 public class Node {
 	// constructor for Node class
 	//
-	Object data;
-	Node next;
-	Node left,right;
+	public Object data;
+	public Node next;
+	public Node left,right;
 	
 	public Node(Object data) {
 		super();
