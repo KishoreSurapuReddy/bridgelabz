@@ -1,4 +1,6 @@
-
+/*Purpose:To print the calander based on the input month and year
+ *  @author kishorereddy
+*/
 package com.bridgelabz.datastructures;
 
 import java.util.Scanner;
@@ -6,6 +8,7 @@ import java.util.Scanner;
 public class Calander {
 	
 	public static void main(String[] args) {
+		Utility<Integer> util = new Utility<Integer>();
 		/*
 		 * taking user input for month and year
 		 */
@@ -15,7 +18,7 @@ public class Calander {
 		System.out.println("enter the year :");
 		int year = sc.nextInt();
 		sc.close();
-		Utility.displayCalander(month, year);
+		util.displayCalander(month, year);
 
 	}
 
