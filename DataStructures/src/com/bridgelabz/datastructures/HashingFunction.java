@@ -1,17 +1,15 @@
 
 /*Purpose:Add the elements into the list at particular position and print 
  * the list
- * 
+ *  @author kishorereddy
 */
 package com.bridgelabz.datastructures;
 
-/**
- * @author kishorereddy
- *
- */
+import com.bridgelabz.util.OrderedList;
+
 public class HashingFunction {
 	@SuppressWarnings("unchecked")
-	static Utility<Integer> list[] = new Utility[11];
+	static OrderedList<Integer> list[] = new OrderedList[11];
 
 	/*
 	 * function to implement adding elements to array
@@ -21,46 +19,44 @@ public class HashingFunction {
 
 		for (int index = 0; index < list.length; index++) {
 
-			list[index] = new Utility<Integer>();
+			list[index] = new OrderedList<Integer>();
 		}
 	}
 
 	/*
 	 * function to implement adding number in list at particular position
+	 * @param slotnumber
 	 */
-	/**
-	 * @param number
-	 */
-	public static void putNumber(int number) {
+	public static void putNumber(int slotnumber) {
 
-		list[number % 11].addOrderedElement(number);
+		list[slotnumber % 11].addOrderedElement(slotnumber);
 	}
 
 	/*
 	 * function to implement search number in list
 	 */
-	public static boolean search(int number) {
+	public static boolean search(int slotnumber) {
 
-		return list[number % 11].searchElement(number);
+		return list[slotnumber % 11].searchElement(slotnumber);
 
 	}
 
 	public static void main(String[] args) {
 
-		Utility<Integer> util = new Utility<Integer>();
+		OrderedList<Integer> list = new OrderedList<Integer>();
 
 		System.out.println("enter the number how manynumbers want to add:");
 		/*
 		 * taking user input
 		 */
 		try {
-			int number = util.scanner.nextInt();
+			int number = list.scanner.nextInt();
 
 			for (int index = 0; index < number; index++) {
 
 				System.out.println("enter " + index + " number :");
 
-				util.addOrderedElement(util.scanner.nextInt());
+				list.addOrderedElement(list.scanner.nextInt());
 			}
 		} catch (Exception e) {
 			
@@ -69,12 +65,12 @@ public class HashingFunction {
 
 		hashingFunction();
 
-		for (int index = 0; index < Utility.sizeOfList(); index++) {
+		for (int index = 0; index < list.sizeOfList(); index++) {
 
-			putNumber(util.pop(index));
+			putNumber(list.pop(index));
 		}
 
-		util.printList();
+		list.printList();
 
 	}
 
