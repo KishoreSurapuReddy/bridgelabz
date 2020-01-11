@@ -2,37 +2,34 @@
  *Purpose:take a queue and add customers into it and according to queue
  * and customer option performing withdraw and deposit operation and finally display total
  *  of bank amount and make queue as balanced
+ *  @author kishorereddy
 */
 package com.bridgelabz.datastructures;
 
-/**
- * @author kishorereddy
- *
- */
-public class Queue {
+import com.bridgelabz.util.QueueList;
+
+public class QueueBanking {
 
 	public static void main(String[] args) {
 		/*
 		 * instance of Utility class
 		 */
-		Utility<String> util = new Utility<String>();
+		QueueList queue = new QueueList();
 		System.out.println("---------------------");
 		System.out.println("  Welcome to Bank    ");
-		/*
-		 * calling enqueue function
-		 */
-		util.enQueue();
+		System.out.println("how many memebers are in queue:");
+		int members = queue.scanner.nextInt();
+		for (int memeber = 1; memeber <= members; memeber++) {
+			System.out.println("enter the name :");
+			queue.enQueue(queue.scanner.next());
+		}
 		do {
-			/*
-			 * calling dequeue function
-			 */
-		util.deQueue();
-		System.out.println("final Queue is :" +Utility.queue);
+			queue.deQueue();
 		}
 		/*
 		 * Repeat until queue get null
 		 */
-		while(!util.isQueueEmpty());
+		while (!queue.isQueueEmpty());
 	}
 
 }
