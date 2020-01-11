@@ -9,13 +9,18 @@
  */
 package com.bridgelabz.datastructures;
 
+import com.bridgelabz.util.StackList;
+
 public class StackBalancedParanthesis {
 
-	public static boolean checkCharacter(String expression) {
+	public static void main(String[] args) {
+
+		StackList<Character> stack = new StackList<Character>();
+
 		/*
-		 * creating the instance of Utility class to access the functions
+		 * given string expression
 		 */
-		Utility<Character> util = new Utility<>();
+		String expression = "(5+6)∗(7+8)/(4+3)(5+6)∗(7+8)/*(4+3)";
 
 		for (int index = 0; index < expression.length(); index++) {
 			/*
@@ -23,48 +28,19 @@ public class StackBalancedParanthesis {
 			 */
 			char character = expression.charAt(index);
 
-			if (character == '(') {
+			if (character == '(' || character == ')') {
 				/*
 				 * compare each character with '(' if it is match with char it will push into
 				 * stack
 				 */
-				util.push(character);
-
-			} else {
-
-				if (character == ')') {
-					/*
-					 * compare each character with ')' if it is match with char it will pop from
-					 * stack
-					 */
-					util.popCharacter(character);
-				}
+				stack.pushCharacter(character);
 			}
 		}
-		/*
-		 * return stack is empty or not
-		 */
-		return util.isEmptyStack();
-
-	}
-
-	public static void main(String[] args) {
-		/*
-		 * given string expression
-		 */
-		String expression = "(5+6)∗(7+8)/(4+3)(5+6)∗(7+8)/*(4+3)";
+		stack.popCharacter();
 		/*
 		 * assign the stack result to result
 		 */
-		boolean result = checkCharacter(expression);
-		/*
-		 * printing stack
-		 */
-		System.out.println(Utility.toStringStack());
-		/*
-		 * size of stack
-		 */
-		System.out.println(Utility.sizeOfStack());
+		boolean result = stack.balancedStack();
 
 		if (result == true) {
 			/*
