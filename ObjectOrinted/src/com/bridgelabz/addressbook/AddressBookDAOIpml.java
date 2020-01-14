@@ -1,36 +1,47 @@
 package com.bridgelabz.addressbook;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class AddressBookDAOIpml implements AddressDAO {
+public  class AddressBookDAOIpml implements AddressDAO {
 	static AddressBook[] array = new AddressBook[2];
+	AddressBook[] collection = new AddressBook[2];
 	static AddressBook[] temp = new AddressBook[2];
-	AddressBook[] newaddress = new AddressBook[2];
+	//AddressBook[] newaddress = new AddressBook[1];
 	Scanner scanner = new Scanner(System.in);
 	AddressBook addressbook ;
 
 	@Override
 	public void addPerson() {
-		array = new AddressBook[2];
-		for (int item = 0; item < array.length; item++) {
-			System.out.println("Enter the person details: ");
-			System.out.println("Enter FirstName :");
-			String firstName = scanner.next();
-			System.out.println("Enter LastName :");
-			String lasttName = scanner.next();
-			System.out.println("Enter Address :");
-			String address = scanner.next();
-			System.out.println("Enter City :");
-			String city = scanner.next();
-			System.out.println("Enter State :");
-			String state = scanner.next();
-			System.out.println("Enter ZipCode :");
-			int zipCode = scanner.nextInt();
-			System.out.println("Enter PhoneNumber :");
-			long phoneNumber = scanner.nextLong();
+		array = new AddressBook[1];
+		for (int position = 0; position < array.length; position++) {
+			String firstName = null;
+			String lasttName = null;
+			String address = null;
+			String city = null;
+			String state = null;
+			int zipCode = 0;
+			long phoneNumber = 0;
+			try {
+				System.out.println("Enter the person details: ");
+				System.out.println("Enter FirstName :");
+				firstName = scanner.next();
+				System.out.println("Enter LastName :");
+				lasttName = scanner.next();
+				System.out.println("Enter Address :");
+				address = scanner.next();
+				System.out.println("Enter City :");
+				city = scanner.next();
+				System.out.println("Enter State :");
+				state = scanner.next();
+				System.out.println("Enter ZipCode :");
+				zipCode = scanner.nextInt();
+				System.out.println("Enter PhoneNumber :");
+				phoneNumber = scanner.nextLong();
+			} catch (Exception e) {
+				System.out.println("enter correct data");
+			}
 			addressbook = new AddressBook(firstName,lasttName,address,city,state,zipCode,phoneNumber);
-			array[item] = addressbook;
+			array[position] = addressbook;
 		}
 		System.out.println("successfully record added..");
 	}
@@ -62,8 +73,13 @@ public class AddressBookDAOIpml implements AddressDAO {
 		temp = new AddressBook[2];
 		for(AddressBook item : array) {
 			if(item.getFirstName().equals(firstName)) {
-				System.out.println("select the choice to update 1.address 2.city 3.state 4.zipcode 5.phonenumber");
-				int choice = scanner.nextInt();
+				int choice = 0;
+				try {
+					System.out.println("select the choice to update 1.address 2.city 3.state 4.zipcode 5.phonenumber");
+					choice = scanner.nextInt();
+				} catch (Exception e) {
+					System.out.println("enter digits only..");
+				}
 				switch(choice) {
 				case 1:
 					System.out.println("enter address to update");
@@ -102,26 +118,10 @@ public class AddressBookDAOIpml implements AddressDAO {
 		System.out.println("successfully updated ");
 	}
 
-	public <T extends Comparable<T>> T[] sortEntriesByName(T[] array) {
-		temp = new AddressBook[2];
-		for(int count = 1 ; count < array.length ; count++) {
-			for(int index = count ; index > 0 ;index--) {
-				if(array[index-1].compareTo(array[index]) > 0) {
-					String temp = (String) array[index];
-					array[index] = array[index-1];
-					array[index-1] = (T) temp;
-				}
-			}
-		}
-		
-		return array;
-		
-	}
-
+	
 	@Override
 	public AddressBook sortEntriesByZipCode(int zipCode) {
 		return addressbook;
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -133,28 +133,38 @@ public class AddressBookDAOIpml implements AddressDAO {
 
 	@Override
 	public void createNewAddressBook() {
+		for(int index = 0 ; index < collection.length ; index ++) {
+			collection = array;
+		}
 		addPerson();
-		newaddress = array;
-		noofAddressBooks(newaddress);
+		collection = array;
 	}
 
 	@Override
-	public void openExistingAddressBook(AddressBook[] addressbook) {
-		// TODO Auto-generated method stub
+	public void openExistingAddressBook(AddressBook addressbook) {
+		for(int position = 0 ; position < collection.length ; position++) {
+			AddressBook selectedbook = collection[position];
+			if(addressbook.equals(selectedbook)) {
+				System.out.println(addressbook.getFirstName()+"   "
+						+addressbook.getLastName()+"   "+
+						addressbook.getAddress()+"    "+
+						addressbook.getCity()+"   "+
+						addressbook.getState()+"   "+
+						addressbook.getZipCode()+"    "+
+						addressbook.getPhoneNumber());
+			}
+		}
 		
 	}
 
 	@Override
 	public void saveAddressBook() {
-		noofAddressBooks();
 		
 	}
 
 	@Override
 	public void saveAsAddressBook() {
 		System.out.println("enter the name of address book");
-	    AddressBook[] name = scanner.next();
-		name = array;
 		
 	}
 	public void noofAddressBooks(AddressBook newaddress2) {
@@ -164,4 +174,18 @@ public class AddressBookDAOIpml implements AddressDAO {
 		}
 	}
 
+	//@Override
+	/*public <T extends Comparable<T>>T[] sortEntriesByName(T[] array) {
+		for(int count = 1 ; count < array.length ; count++) {
+			for(int index = count ; index > 0 ;index--) {
+				if(array[index-1].compareTo(array[index]) > 0) {
+					String temp = (String) array[index];
+					array[index] = array[index-1];
+					array[index-1] = (T) temp;
+				}
+			}
+		}
+		
+		return array;
+	}*/
 }
