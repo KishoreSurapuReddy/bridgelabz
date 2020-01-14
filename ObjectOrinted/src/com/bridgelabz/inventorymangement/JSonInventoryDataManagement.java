@@ -1,4 +1,4 @@
-package com.bridgelabz.objectorinted;
+package com.bridgelabz.inventorymangement;
 
 public class JSonInventoryDataManagement {
 	
