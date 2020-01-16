@@ -47,13 +47,14 @@ public class InventoryDAOImpl implements InventoryDAO {
 			FileReader file = new FileReader("/home/bridgelabsz/Desktop/inventory.json");
 			Object object = parser.parse(file);
 			JSONObject jsonobject = (JSONObject) object;
-			JSONArray array = (JSONArray) jsonobject.get(item);
+			JSONArray array = new JSONArray();
 			JSONObject json = new JSONObject();
 			json.put("itemName", itemName);
 			json.put("itemWeight", itemWeight);
 			json.put("itemPrice", itemPrice);
 			array.add(json);
 			System.out.println(array);
+			jsonobject.put(item, array);
 			FileWriter filewriter = new FileWriter("/home/bridgelabsz/Desktop/inventory.json");
 			filewriter.write(jsonobject.toJSONString());
 			filewriter.close();
@@ -102,7 +103,7 @@ public class InventoryDAOImpl implements InventoryDAO {
 			JSONObject jsonobject = (JSONObject) iterator.next();
 			double itemWeight = (double) jsonobject.get("itemWeight");
 			double itemPrice = (double) jsonobject.get("itemPrice");
-			calculation = calculation + itemWeight * itemPrice;
+			calculation = calculation + (itemWeight * itemPrice);
 		}
 		return calculation;
 
