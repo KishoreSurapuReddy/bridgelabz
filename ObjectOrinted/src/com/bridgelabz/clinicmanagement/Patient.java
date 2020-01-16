@@ -41,8 +41,9 @@ public class Patient {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-	
+	public String toString(){
+		return getPatientName()+"  "+getPatientId()+"  "+getPhoneNumber()+"  "+getAge();
+	}
 	
 
 }
