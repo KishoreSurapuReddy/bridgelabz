@@ -1,6 +1,7 @@
 package com.bridgelabz.clinicmanagement;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClinicManagementDAOImpl implements ClinicManagementDAO {
@@ -9,6 +10,7 @@ public class ClinicManagementDAOImpl implements ClinicManagementDAO {
 	ArrayList<Patient> patientlist = new ArrayList<Patient>();
 	ArrayList<Patient> temp = new ArrayList<Patient>();
 	ArrayList<Doctor> tempdoctor = new ArrayList<Doctor>();
+	List<String> appointment = new ArrayList<>();
 	Doctor doctor;
 	Patient patient;
 
@@ -34,7 +36,7 @@ public class ClinicManagementDAOImpl implements ClinicManagementDAO {
 
 	@Override
 	public void addPatient() {
-		int loop = 0;
+		int loop = 1;
 		while (loop == 1) {
 			patient = new Patient();
 			System.out.println("enter patient name :");
@@ -54,14 +56,50 @@ public class ClinicManagementDAOImpl implements ClinicManagementDAO {
 	}
 
 	@Override
-	public void takeAppointment() {
-		
+	public void takeAppointment(String doctorname) {
+		for(Doctor list : doctorlist){
+			if(list.getDoctorName().equals(doctorname)){
+				System.out.println("enter patient id :");
+				int id = scanner.nextInt();
+				for(Patient patientlist : patientlist){
+					if(patientlist.getPatientId()==id){
+						List<String> details;
+						int i = 1;
+						while(i == 1){
+							int n = 1;
+							details = new ArrayList<>();
+							if(n <= 5){
+								System.out.println("enter patient name ");
+								String patientname = scanner.next();
+								details.add(patientname);
+								System.out.println("enter patient phonenumber");
+								String number = scanner.next();
+								details.add(number);
+								System.out.println("enter patient age ");
+								String age = scanner.next();
+								details.add(age);
+								appointment.addAll(details);
+								n++;
+							}else{
+								System.out.println("appointments are closed..");
+							}
+							System.out.println("enter 1 to add another patient or press any other key");
+							int key = scanner.nextInt();
+							i = key;
+						}
+					}else{
+						System.out.println("enter correct details..");
+					}
+				}
+			}else{
+				System.out.println("enter correct details..");
+			}
+		}
 		
 	}
 
 	@Override
 	public void updateDoctor(String doctorName) {
-		doctorlist = new ArrayList<Doctor>();
 		tempdoctor = new ArrayList<Doctor>();
 		for(Doctor list : doctorlist) {
 			if(list.getDoctorName().equals(doctorName)) {
@@ -99,7 +137,6 @@ public class ClinicManagementDAOImpl implements ClinicManagementDAO {
 
 	@Override
 	public void updatePatient(String patientName) {
-		patientlist = new ArrayList<Patient>();
 		temp = new ArrayList<Patient>();
 		for(Patient list : patientlist) {
 			if(list.getPatientName().equals(patientName)) {
@@ -160,8 +197,22 @@ public class ClinicManagementDAOImpl implements ClinicManagementDAO {
 				patient.setAge(list.getAge());
 			}
 		}
+		System.out.println(patient);
 		return patient;
 		
 	}
+
+	@Override
+	public List<Doctor> viewAllDoctors() {
+		return doctorlist;
+		
+	}
+
+	@Override
+	public List<Patient> viewAllPatients() {
+		return patientlist;
+		
+	}
+
 
 }
