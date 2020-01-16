@@ -3,7 +3,9 @@ package com.bridgelabz.deckofcards;
 public class Node {
 	String data;
 	Node next;
-	Node(String item){
+
+	// constructor
+	Node(String item) {
 		data = item;
 		next = null;
 	}
