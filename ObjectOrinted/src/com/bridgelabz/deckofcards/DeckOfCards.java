@@ -1,3 +1,8 @@
+/*Purpose:take the deck of cards and shuffel all the cards and distribute
+ * to 4 players each on of 9 cards and make deck as sort and print using
+ * queue 
+ * @author kishorereddy
+*/
 package com.bridgelabz.deckofcards;
 
 public class DeckOfCards {
@@ -47,6 +52,9 @@ public class DeckOfCards {
 		}
 	}
 
+	/*
+	 * function to implement printing player cards
+	 */
 	public static void printPlayer(String[] player) {
 		System.out.println("player : ");
 		for (int index = 0; index < 9; index++) {
@@ -55,9 +63,9 @@ public class DeckOfCards {
 	}
 
 	public static void main(String[] args) {
-		
+
 		DeckOfCards cards = new DeckOfCards();
-		SortOfDeckCards sort =  new SortOfDeckCards();
+		SortOfDeckCards sort = new SortOfDeckCards();
 		cards.deckOfShuffelCards();
 		printPlayer(player1);
 		printPlayer(player2);
