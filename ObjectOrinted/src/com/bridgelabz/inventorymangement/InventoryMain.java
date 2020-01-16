@@ -4,11 +4,12 @@ import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
 
+
 public class InventoryMain {
 	
 	InventoryDAOImpl inventory = new InventoryDAOImpl();
 	
-	public void menu() throws IOException, ParseException {
+	public void menu() throws IOException {
 		System.out.println("--------------------");
 		System.out.println("enter the option.... ");
 		System.out.println("1. add the details.. ");
@@ -31,21 +32,41 @@ public class InventoryMain {
 			switch (choice) {
 			case 1:
 				System.out.println("calulation for rice");
-				System.out.println(inventory.readInventory("Rice"));
+				try {
+					System.out.println(inventory.readInventory("Rice"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case 2:
 				System.out.println("calculation for wheat ");
-				System.out.println(inventory.readInventory("wheat"));
+				try {
+					System.out.println(inventory.readInventory("wheat"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 				break;
 			case 3:
 				System.out.println("calculation for pulses ");
-				System.out.println(inventory.readInventory("pulses"));
+				try {
+					System.out.println(inventory.readInventory("pulses"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 				break;
 			case 4:
 				System.out.println("calculation for all ");
-				System.out.println(inventory.readInventory("All"));
+				try {
+					System.out.println(inventory.readInventory("All"));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 
 			default:
