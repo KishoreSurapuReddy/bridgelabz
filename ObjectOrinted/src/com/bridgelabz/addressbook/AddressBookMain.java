@@ -75,8 +75,8 @@ public class AddressBookMain {
 
 	public static void main(String[] args) throws IOException, ParseException {
 		
-		AddressBookMain main = new AddressBookMain();
-		main.menu();
+		AddressBookMain address = new AddressBookMain();
+		address.menu();
 	}
 
 
