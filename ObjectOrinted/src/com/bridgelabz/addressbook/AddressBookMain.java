@@ -1,17 +1,25 @@
+/*Purpose: create address and add person to it and also update the person and 
+ * we can also delete the person from address book 
+ * @author kishorereddy
+*/
 package com.bridgelabz.addressbook;
+
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 public class AddressBookMain {
 	AddressBookDAOIpml address = new AddressBookDAOIpml();
 	AddressBook select1;
-	public void menu() {
+	public void menu() throws IOException, ParseException {
 		System.out.println("------------------------");
 		System.out.println("       ADDRESSBOOK      ");
 		System.out.println("       1.Add Person     ");
 		System.out.println("       2.update person  ");
 		System.out.println("       3.delete person  ");
-		System.out.println("       4.print entries  ");
-		System.out.println("       5.createnewbook  ");
-		System.out.println("       6.select existing one");
-		System.out.println("       7.exit           ");
+		System.out.println("       4.save addressbook ");
+		System.out.println("       5.search entries ");
+		System.out.println("       6.exit           ");
 		System.out.println("select the choice ");
 		int choice = 0;
 		try {
@@ -21,7 +29,15 @@ public class AddressBookMain {
 		}
 		switch(choice) {
 		case 1:
-			address.addPerson();
+			try {
+				address.addPerson();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			menu();
 			break;
 		case 2:
@@ -37,33 +53,16 @@ public class AddressBookMain {
 			menu();
 			break;
 		case 4:
-			AddressBook[] data = address.printEntries();
-			System.out.println("firstname"+"\t"+"lastname"+"\t"+"address"+"\t"+"city"+"\t"+"state"+"\t"+"zipcode"+"\t"+"phonenumber");
-			for(AddressBook details : data ) {
-				System.out.println("   "+details);
-			}
+			address.saveAddressBook();
 			menu();
 			break;
 		case 5:
-			address.createNewAddressBook();
+			System.out.println("enter the first name :");
+			String firstname = address.scanner.next();
+			address.searchEntries(firstname);
 			menu();
 			break;
 		case 6:
-			//System.out.println("enter the number 0 or 1:");
-			//int number = address.scanner.nextInt();
-			for(int index = 0 ; index < address.collection.length ;index++ ) {
-				System.out.println("contains"+address.collection[index]);
-			}
-			int number = 1;
-			for(int index = 0 ; index < address.collection.length ;index++ ) {
-				if (number == index) {
-					select1 = address.collection[index];
-				}
-			}
-			address.openExistingAddressBook(select1);
-			menu();
-			break;
-		case 7:
 			System.exit(0);
 			break;
 		default:
@@ -74,10 +73,11 @@ public class AddressBookMain {
 	}
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, ParseException {
 		
 		AddressBookMain main = new AddressBookMain();
 		main.menu();
 	}
+
 
 }
