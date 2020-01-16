@@ -2,42 +2,32 @@ package com.bridgelabz.inventorymangement;
 
 public class JSonInventoryDataManagement {
 	
-	String name ;
-	double weight ;
-	double price ;
-	
+	String itemName;
+	double itemWeight;
+	double itemPrice;
 
-	public String getName() {
-		return name;
+	public String getItemName() {
+		return itemName;
 	}
 
-
-	public void setName(String name) {
-		this.name = name;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
-
-	public double getWeight() {
-		return weight;
+	public double getItemWeight() {
+		return itemWeight;
 	}
 
-
-	public void setWeight(double jsonValue) {
-		this.weight = jsonValue;
+	public void setItemWeight(double itemWeight) {
+		this.itemWeight = itemWeight;
 	}
 
-
-	public double getPrice() {
-		return price;
+	public double getItemPrice() {
+		return itemPrice;
 	}
 
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public String toString() {
-		return getName()+" "+getWeight()+" "+getPrice()+"total price of product"+getWeight()*getPrice();
+	public void setItemPrice(double itemPrice) {
+		this.itemPrice = itemPrice;
 	}
 
 }
