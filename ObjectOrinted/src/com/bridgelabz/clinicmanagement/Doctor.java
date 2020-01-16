@@ -44,6 +44,5 @@ public class Doctor {
 	public String toString() {
 		return getDoctorName()+"  "+getDoctorId()+"  "+getSpecialization()+ "  "+getAvailability();
 	}
-	
 
 }
