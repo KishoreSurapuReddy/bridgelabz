@@ -1,15 +1,18 @@
 package com.bridgelabz.clinicmanagement;
 
-public class ClinicManagementMenu {
+import java.util.List;
+
+public class ClinicManagementMain {
 	ClinicManagementDAOImpl clinic = new ClinicManagementDAOImpl();
 	public void doctor() {
 		System.out.println("----------------------");
-		System.out.println("  DOCTOR MENU   ");
+		System.out.println("    DOCTOR MENU     ");
 		System.out.println("  1.addDoctor       ");
 		System.out.println("  2.view Doctor     ");
-		System.out.println("  3.update Doctor   ");
-		System.out.println("  4.viewAppointmentPatient ");
-		System.out.println("  5.Back            ");
+		System.out.println("  3.view all doctors");
+		System.out.println("  4.update Doctor   ");
+		System.out.println("  5.viewAppointmentPatient ");
+		System.out.println("  6.Back            ");
 		System.out.println("enter the choice ");
 		int choice = clinic.scanner.nextInt();
 		switch(choice) {
@@ -25,18 +28,29 @@ public class ClinicManagementMenu {
 			doctor();
 			break;
 		case 3:
+			List<Doctor> list = clinic.viewAllDoctors();
+			System.out.println("doctor name "+"doctor id"+"specilaization"+"availability");
+			for(Doctor doctors : list ){
+				System.out.println(doctors);
+			}
+			doctor();
+			break;
+		case 4:
 			System.out.println("enter name of doctor ");
 			String doctorname = clinic.scanner.next();
 			clinic.updateDoctor(doctorname);
 			doctor();
 			break;
-		case 4:
-			
 		case 5:
+			List<String> appointmentlist = clinic.appointment;
+			for(String details : appointmentlist){
+				System.out.println(details);
+			}
+		case 6:
 			menu();
 			break;
 		default:
-			System.out.println("enter the range between 1-5 only..");
+			System.out.println("enter the range between 1-6 only..");
 			break;
 		}
 		
@@ -48,9 +62,11 @@ public class ClinicManagementMenu {
 		System.out.println("    PATIENT MENU     ");
 		System.out.println("  1.addPatient       ");
 		System.out.println("  2.view Patient     ");
-		System.out.println("  3.update Patient   ");
-		System.out.println("  4.takeAppointment  ");
-		System.out.println("  5.Back             ");
+		System.out.println("  3.view all patients");
+		System.out.println("  4.view all doctors");
+		System.out.println("  5.update Patient   ");
+		System.out.println("  6.takeAppointment  ");
+		System.out.println("  7.Back             ");
 		System.out.println("enter the choice ");
 		int choice = clinic.scanner.nextInt();
 		switch(choice) {
@@ -67,18 +83,37 @@ public class ClinicManagementMenu {
 			patient();
 			break;
 		case 3:
+			List<Patient> list = clinic.viewAllPatients();
+			System.out.println("patient name "+"patient id"+"phone number"+"age");
+			for(Patient patients : list ){
+				System.out.println(patients);
+			}
+			patient();
+			break;
+		case 4:
+			List<Doctor> listdotors = clinic.viewAllDoctors();
+			System.out.println("doctor name "+"doctor id"+"specilaization"+"availability");
+			for(Doctor doctors : listdotors ){
+				System.out.println(doctors);
+			}
+			patient();
+			break;
+		case 5:
 			System.out.println("enter patient name :");
 			String patientname = clinic.scanner.next();
 			clinic.updatePatient(patientname);
 			patient();
 			break;
-		case 4:
+		case 6:
+			System.out.println("enter the name of doctor :");
+			String doctorname = clinic.scanner.next();
+			clinic.takeAppointment(doctorname);
 			
-		case 5:
+		case 7:
 			menu();
 			break;
 		default:
-			System.out.println("enter the range between 1-5 only..");
+			System.out.println("enter the range between 1-7 only..");
 			break;
 		}
 	}
@@ -108,9 +143,8 @@ public class ClinicManagementMenu {
 	}
 
 	public static void main(String[] args) {
-		ClinicManagementMenu clinic = new ClinicManagementMenu();
+		ClinicManagementMain clinic = new ClinicManagementMain();
 		clinic.menu();
 
 	}
-
 }
