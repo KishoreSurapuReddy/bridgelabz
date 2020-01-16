@@ -1,14 +1,17 @@
 package com.bridgelabz.addressbook;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
 public interface AddressDAO {
-	public void addPerson();
-	public void deletePerson(String firstName);
-	public void editPerson(String firstName);
-	public AddressBook sortEntriesByZipCode(int zipCode);
-	public AddressBook[] printEntries();
-	public void createNewAddressBook();
-	public void openExistingAddressBook(AddressBook addressbook);
-	public void saveAddressBook();
-	public void saveAsAddressBook();
+	//abstract methods
+	public void addPerson() throws IOException, ParseException;
+	public void deletePerson(String firstName) throws FileNotFoundException, IOException, ParseException;
+	public void editPerson(String firstName) throws IOException, ParseException;
+	public void writeDetails(String firstName , String lastName , String address , String city , String state , int zipCode ,long phoneNumber ) throws FileNotFoundException, IOException, ParseException;
+	public void searchEntries(String firstname) throws IOException, ParseException;
+	public void saveAddressBook() throws IOException, ParseException;
 
 }
