@@ -13,7 +13,7 @@ public class ClinicManagementDAOImpl implements ClinicManagementDAO {
 	List<String> appointment = new ArrayList<>();
 	Doctor doctor;
 	Patient patient;
-
+    
 	@Override
 	public void addDoctor() {
 		int loop = 1;
