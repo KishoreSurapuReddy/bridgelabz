@@ -1,4 +1,4 @@
-package stockmanagement;
+package com.bridgelabz.stockmanagement;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
