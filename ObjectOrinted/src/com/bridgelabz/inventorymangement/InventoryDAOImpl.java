@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -12,11 +11,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
 public class InventoryDAOImpl implements InventoryDAO {
-	
+
 	Scanner scanner = new Scanner(System.in);
 
+	/*
+	 * function to implement adding inventory to file
+	 */
 	@Override
 	public void addInventory(String item) {
 		JSonInventoryDataManagement inventory = new JSonInventoryDataManagement();
@@ -38,6 +39,9 @@ public class InventoryDAOImpl implements InventoryDAO {
 
 	}
 
+	/*
+	 * function to implement writing inventory to file
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void writeInventory(String item, String itemName, double itemWeight, double itemPrice)
@@ -65,6 +69,9 @@ public class InventoryDAOImpl implements InventoryDAO {
 
 	}
 
+	/*
+	 * function to implement reading inventory to file
+	 */
 	@Override
 	public double readInventory(String item) throws IOException, ParseException {
 		double total = 0;
@@ -83,7 +90,7 @@ public class InventoryDAOImpl implements InventoryDAO {
 				total = total + calItem(array);
 
 			} else {
-				JSONArray array = (JSONArray) jsonobject.get("item");
+				JSONArray array = (JSONArray) jsonobject.get(item);
 				total = total + calItem(array);
 			}
 		} catch (FileNotFoundException e) {
@@ -94,17 +101,18 @@ public class InventoryDAOImpl implements InventoryDAO {
 
 	}
 
+	/*
+	 * function to implement calculating inventory to file
+	 */
 	@SuppressWarnings("rawtypes")
 	@Override
 	public double calItem(JSONArray array) {
 		double calculation = 0;
-		Iterator iterator = array.iterator();
-		while (iterator.hasNext()) {
-			JSONObject jsonobject = (JSONObject) iterator.next();
-			double itemWeight = (double) jsonobject.get("itemWeight");
-			double itemPrice = (double) jsonobject.get("itemPrice");
-			calculation = calculation + (itemWeight * itemPrice);
-		}
+		JSONObject jsonobject = (JSONObject) array.get(0);
+		long itemWeight = (long) jsonobject.get("itemWeight");
+		long itemPrice = (long) jsonobject.get("itemPrice");
+		calculation = calculation + (itemWeight * itemPrice);
+
 		return calculation;
 
 	}
