@@ -1,4 +1,4 @@
-package stockmanagement;
+package com.bridgelabz.stockmanagement;
 
 public class StockManagement {
 	
