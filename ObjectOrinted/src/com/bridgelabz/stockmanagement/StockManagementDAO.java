@@ -17,7 +17,7 @@ public interface StockManagementDAO {
 	public void stockAccount() throws IOException, ParseException;
 	public int[] valueOfAccount(String customerName) throws IOException, ParseException;
 	public void buyShare(int amount , String stockName) throws IOException, ParseException;
-	public void sellShare(int amount , String stockName);
+	public void sellShare(int amount , String stockName) throws FileNotFoundException, IOException, ParseException;
 	public void saveFile(String fileName) throws FileNotFoundException, IOException, ParseException;
 	public void printReport(String customerName) throws IOException, ParseException;
 	public void write(String customerName , int customerId,String[] stockName ,int[] numberOfshares ,double[] shareValue ) throws IOException, ParseException;
