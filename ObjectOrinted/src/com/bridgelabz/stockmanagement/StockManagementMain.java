@@ -95,13 +95,18 @@ public class StockManagementMain {
 			break;
 		case 4:
 			System.out.println("enter stock name :");
-			String stockname = stock.scanner.next();
+			String sellname = stock.scanner.next();
 			System.out.println("enter amount :");
-			int amount = stock.scanner.nextInt();
-			stock.buyShare(amount, stockname);
+			int sellamount = stock.scanner.nextInt();
+			stock.buyShare(sellamount, sellname);
 			customer();
 			break;
 		case 5:
+			System.out.println("enter stock name :");
+			String stockname = stock.scanner.next();
+			System.out.println("enter amount :");
+			int amount = stock.scanner.nextInt();
+			stock.sellShare(amount, stockname);
 			customer();
 			break;
 		case 6:
