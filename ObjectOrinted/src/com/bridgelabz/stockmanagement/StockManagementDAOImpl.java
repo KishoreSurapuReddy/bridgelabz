@@ -262,10 +262,12 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 				long shares = (long) jsonob.get("numberOfShares");
 				long finalshares = (shares - numberofshares);
 				jsonob.put("numberOfShares", finalshares);
-				array.add(jsonob);
-				json.put(stockName, array);
+				JSONArray arrayupdate = new JSONArray();
+				JSONObject objectupdate = new JSONObject();
+				arrayupdate.add(jsonob);
+				objectupdate.put(stockName, array);
 				FileWriter writer = new FileWriter("/home/bridgelabsz/Desktop/stocks.json");
-				writer.write(json.toJSONString());
+				writer.write(objectupdate.toJSONString());
 				writer.close();
 			} else {
 				System.out.println("file is empty ");
@@ -277,22 +279,31 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 			JSONArray arraycustomer = (JSONArray) jsoncustomer.get(namecustomer);
 			JSONObject jsonupdate = (JSONObject) arraycustomer.get(0);
 			JSONArray matcharray = (JSONArray) jsonupdate.get("stockName");
-			JSONArray valuecustomer = (JSONArray) jsonupdate.get("shareValue");
+			JSONArray valuecustomer = (JSONArray) jsonupdate.get("numberOfShares");
 			for (int index = 0; index < matcharray.size(); index++) {
 				if (matcharray.get(index).equals(stockName)) {
 					long position = (long) valuecustomer.get(index);
 					position = position + numberofshares;
+					valuecustomer.remove(index);
 					valuecustomer.add(index, position);
-					jsonupdate.put("numberOfShares", position);
+					jsonupdate.put("numberOfShares", valuecustomer);
+					//arraycustomer.add(jsonupdate);
+					//jsoncustomer.put(namecustomer, arraycustomer);
 				} else if (index == matcharray.size() - 1) {
 					matcharray.add(index, stockName);
 					valuecustomer.add(index, numberofshares);
 					jsonupdate.put("stockName", matcharray);
-					jsonupdate.put("sharevalue", valuecustomer);
+					jsonupdate.put("numberOfShares", valuecustomer);
+					arraycustomer.add(jsonupdate);
+					jsoncustomer.put(namecustomer, arraycustomer);
 				}
 			}
+			JSONArray customerupdate = new JSONArray();
+			JSONObject customerobject = new JSONObject();
+			customerupdate.add(jsonupdate);
+			customerobject.put(namecustomer, customerupdate);
 			FileWriter customerfile = new FileWriter("/home/bridgelabsz/Desktop/customer.json");
-			customerfile.write(jsonupdate.toJSONString());
+			customerfile.write(customerobject.toJSONString());
 			customerfile.close();
 
 		} catch (FileNotFoundException e) {
@@ -304,9 +315,44 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	/*
 	 * function to implement to sell a share
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public void sellShare(int amount, String stockName) {
-		// TODO Auto-generated method stub
+	public void sellShare(int amount, String stockName) throws IOException, ParseException {
+		int numberofshares = 0;
+		JSONParser parser = new JSONParser();
+		FileReader customer = new FileReader("/home/bridgelabsz/Desktop/customer.json");
+		JSONObject jsoncustomer = (JSONObject) parser.parse(customer);
+		System.out.println("enter customer name :");
+		String namecustomer = scanner.next();
+		JSONArray arraycustomer = (JSONArray) jsoncustomer.get(namecustomer);
+		JSONObject jsonupdate = (JSONObject) arraycustomer.get(0);
+		System.out.println(jsonupdate);
+		System.out.println("enter the share value of one :");
+		double value = scanner.nextDouble();
+		numberofshares = (int) (amount / value);
+		System.out.println("you will get shares :" + numberofshares + " by this " + amount);
+		JSONArray matcharray = (JSONArray) jsonupdate.get("stockName");
+		JSONArray valuecustomer = (JSONArray) jsonupdate.get("numberOfShares");
+		for (int index = 0; index < matcharray.size(); index++) {
+			if (matcharray.get(index).equals(stockName)) {
+				long position = (long) valuecustomer.get(index);
+				position = position - numberofshares;
+				valuecustomer.remove(index);
+				valuecustomer.add(index, position);
+				jsonupdate.put("numberOfShares", valuecustomer);
+				//arraycustomer.add(jsonupdate);
+				//jsoncustomer.put(namecustomer, arraycustomer);
+			} else {
+				System.out.println("there is no stock name ");
+			}
+		}
+		JSONArray customerupdate = new JSONArray();
+		JSONObject customerobject = new JSONObject();
+		customerupdate.add(jsonupdate);
+		customerobject.put(namecustomer, customerupdate);
+		FileWriter customerfile = new FileWriter("/home/bridgelabsz/Desktop/customer.json");
+		customerfile.write(customerobject.toJSONString());
+		customerfile.close();
 
 	}
 	/*
