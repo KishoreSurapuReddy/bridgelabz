@@ -1,10 +1,18 @@
+/*purpose:it is used to show the main menu
+ * @author kishorereddy
+ * @version 1.0
+ * @since 15/01/2020
+ * @file ClinicManagementMain.java
+ */
 package com.bridgelabz.clinicmanagement;
 
 import java.util.List;
 
 public class ClinicManagementMain {
 	ClinicManagementDAOImpl clinic = new ClinicManagementDAOImpl();
-	public void doctor() {
+	Doctor doctor;
+	Patient patient;
+	public void doctorMenu() {
 		System.out.println("----------------------");
 		System.out.println("    DOCTOR MENU     ");
 		System.out.println("  1.addDoctor       ");
@@ -17,15 +25,30 @@ public class ClinicManagementMain {
 		int choice = clinic.scanner.nextInt();
 		switch(choice) {
 		case 1:
-			clinic.addDoctor();
-			doctor();
+			int loop = 1;
+			while(loop == 1) {
+			doctor = new Doctor();
+			System.out.println("enter name of doctor :");
+			String name = clinic.scanner.next();
+			System.out.println("enter doctor id :");
+			int id = clinic.scanner.nextInt();
+			System.out.println("enter doctor specialization :");
+			String specialization = clinic.scanner.next();
+			System.out.println("enter doctor availability timings :");
+			String time = clinic.scanner.next();
+			doctor = new Doctor(name, id, specialization, time);
+			clinic.addDoctor(doctor);
+			System.out.println("if u want to add another doctor details press 1 or press any key");
+			loop = clinic.scanner.nextInt();
+			}
+			doctorMenu();
 			break;
 		case 2:
-			System.out.println("enter doctor name or id or specialization or availability");
-			String name = clinic.scanner.next();
-			int view = clinic.scanner.nextInt();
-			clinic.viewDoctor(name, view, name, name);
-			doctor();
+			System.out.println("enter doctor id :");
+			int id = clinic.scanner.nextInt();
+			doctor = clinic.viewDoctor(id);
+			System.out.println(doctor);
+			doctorMenu();
 			break;
 		case 3:
 			List<Doctor> list = clinic.viewAllDoctors();
@@ -33,13 +56,13 @@ public class ClinicManagementMain {
 			for(Doctor doctors : list ){
 				System.out.println(doctors);
 			}
-			doctor();
+			doctorMenu();
 			break;
 		case 4:
-			System.out.println("enter name of doctor ");
-			String doctorname = clinic.scanner.next();
-			clinic.updateDoctor(doctorname);
-			doctor();
+			System.out.println("enter id of doctor ");
+			int doctorid = clinic.scanner.nextInt();
+			clinic.updateDoctor(doctorid);
+			doctorMenu();
 			break;
 		case 5:
 			List<String> appointmentlist = clinic.appointment;
@@ -56,7 +79,7 @@ public class ClinicManagementMain {
 		
 	}
 	
-	public void patient() {
+	public void patientMenu() {
 		
 		System.out.println("----------------------");
 		System.out.println("    PATIENT MENU     ");
@@ -71,16 +94,30 @@ public class ClinicManagementMain {
 		int choice = clinic.scanner.nextInt();
 		switch(choice) {
 		case 1:
-			clinic.addPatient();
-			patient();
+			int loop = 1;
+			while (loop == 1) {
+				patient = new Patient();
+				System.out.println("enter patient name :");
+				String name = clinic.scanner.next();
+				System.out.println("enter patient id :");
+				int id = clinic.scanner.nextInt();
+				System.out.println("enter patient phonenumber :");
+				long phoneNumber = clinic.scanner.nextLong();
+				System.out.println("enter patient age :");
+				int age = clinic.scanner.nextInt();
+				patient = new Patient(name, id, phoneNumber, age);
+				clinic.addPatient(patient);
+				System.out.println("if u want to add another patient details press 1 or any key");
+				loop = clinic.scanner.nextInt();
+			}
+			patientMenu();
 			break;
 		case 2:
-			System.out.println("enter patient name or id or phonenumber");
-			String name = clinic.scanner.next();
-			int id = clinic.scanner.nextInt();
-			long number = clinic.scanner.nextLong();
-			clinic.viewPatient(name, id, number);
-			patient();
+			System.out.println("enter patient id :");
+			int patientid = clinic.scanner.nextInt();
+			patient = clinic.viewPatient(patientid);
+			System.out.println(patient);
+			patientMenu();
 			break;
 		case 3:
 			List<Patient> list = clinic.viewAllPatients();
@@ -88,7 +125,7 @@ public class ClinicManagementMain {
 			for(Patient patients : list ){
 				System.out.println(patients);
 			}
-			patient();
+			patientMenu();
 			break;
 		case 4:
 			List<Doctor> listdotors = clinic.viewAllDoctors();
@@ -96,13 +133,13 @@ public class ClinicManagementMain {
 			for(Doctor doctors : listdotors ){
 				System.out.println(doctors);
 			}
-			patient();
+			patientMenu();
 			break;
 		case 5:
-			System.out.println("enter patient name :");
-			String patientname = clinic.scanner.next();
-			clinic.updatePatient(patientname);
-			patient();
+			System.out.println("enter patient id :");
+			int patientId = clinic.scanner.nextInt();
+			clinic.updatePatient(patientId);
+			patientMenu();
 			break;
 		case 6:
 			System.out.println("enter the name of doctor :");
@@ -129,10 +166,10 @@ public class ClinicManagementMain {
 		int choice = clinic.scanner.nextInt();
 		switch(choice) {
 		case 1:
-			doctor();
+			doctorMenu();
 			break;
 		case 2:
-			patient();
+			patientMenu();
 			break;
 		case 3:
 			System.exit(0);
