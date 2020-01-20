@@ -29,19 +29,31 @@ public class StockManagementMain {
 		switch (choice) {
 		case 1:
 			StockManagement stockdata = new StockManagement();
-			System.out.println("enter the name of stock :");
-			stockdata.setStockName(stock.scanner.next());
-			System.out.println("enter the number of shares :");
-			stockdata.setNumberOfShares(stock.scanner.nextInt());
-			System.out.println("enter the price of each share :");
-			stockdata.setSharePrice(stock.scanner.nextDouble());
+			try {
+				System.out.println("enter the name of stock :");
+				stockdata.setStockName(stock.scanner.next());
+			} catch (Exception e) {
+				System.out.println("enter string data only...");
+			}
+			try {
+				System.out.println("enter the number of shares :");
+				stockdata.setNumberOfShares(stock.scanner.nextInt());
+				System.out.println("enter the price of each share :");
+				stockdata.setSharePrice(stock.scanner.nextDouble());
+			} catch (Exception e) {
+				System.out.println("enter correct type of data..");
+			}
 			stock.addStock(stockdata);
 			stock();
 			break;
 		case 2:
-			System.out.println("enter the stock name :");
-			String name = stock.scanner.next();
-			stock.viewStock(name);
+			try {
+				System.out.println("enter the stock name :");
+				String name = stock.scanner.next();
+				stock.viewStock(name);
+			} catch (Exception e) {
+				System.out.println("enter string data onlt...");
+			}
 			stock();
 			break;
 		case 3:
@@ -49,15 +61,23 @@ public class StockManagementMain {
 			stock();
 			break;
 		case 4:
-			System.out.println("enter the stock name to delete ");
-			String deletename = stock.scanner.next();
-			stock.deleteStock(deletename);
+			try {
+				System.out.println("enter the stock name to delete ");
+				String deletename = stock.scanner.next();
+				stock.deleteStock(deletename);
+			} catch (Exception e) {
+				System.out.println("enter string data only...");
+			}
 			stock();
 			break;
 		case 5:
-			System.out.println("enter the name stock to update ");
-			String update = stock.scanner.next();
-			stock.updateStock(update);
+			try {
+				System.out.println("enter the name stock to update ");
+				String update = stock.scanner.next();
+				stock.updateStock(update);
+			} catch (Exception e) {
+				System.out.println("enter string data only...");
+			}
 			stock();
 			break;
 		case 6:
@@ -84,44 +104,92 @@ public class StockManagementMain {
 		int choice = stock.scanner.nextInt();
 		switch (choice) {
 		case 1:
-			stock.stockAccount();
+			int[] shares = new int[2];
+			String[] stocks = new String[2];
+			double[] value = new double[2];
+			CustomerStockAccount customer = new CustomerStockAccount();
+			try {
+				System.out.println("enter customer name :");
+				customer.setCustomerName(stock.scanner.next());
+				System.out.println("enter customer id:");
+				customer.setCustomerId(stock.scanner.nextInt());
+				System.out.println("enter the names of stocks :");
+				for (int index = 0; index < shares.length; index++) {
+					stocks[index] = stock.scanner.next();
+				}
+				customer.setStockName(stocks);
+				System.out.println("enter the number of shares :");
+				for (int index = 0; index < shares.length; index++) {
+					shares[index] = stock.scanner.nextInt();
+				}
+				customer.setNumberOfShares(shares);
+				System.out.println("enter the value of share :");
+				for (int index = 0; index < shares.length; index++) {
+					value[index] = stock.scanner.nextDouble();
+				}
+			} catch (Exception e) {
+				System.out.println("enter correct type of data only...");
+			}
+			customer.setShareValue(value);
+			customer.toString();
+			stock.stockAccount(customer);
 			customer();
 			break;
 		case 2:
-			System.out.println("enter customer name :");
-			String name = stock.scanner.next();
-			stock.printReport(name);
+			try {
+				System.out.println("enter customer name :");
+				String name = stock.scanner.next();
+				stock.printReport(name);
+			} catch (Exception e) {
+				System.out.println("enter string data only..");
+			}
 			customer();
 			break;
 		case 3:
-			System.out.println("enter customer name :");
-			String customername = stock.scanner.next();
-			int[] result = stock.valueOfAccount(customername);
-			for (int index = 0; index < result.length; index++) {
-				System.out.println(result[index]);
+			try {
+				System.out.println("enter customer name :");
+				String customername = stock.scanner.next();
+				int[] result = stock.valueOfAccount(customername);
+				for (int index = 0; index < result.length; index++) {
+					System.out.println(result[index]);
+				}
+			} catch (Exception e) {
+				System.out.println("enter string data only...");
 			}
 			customer();
 			break;
 		case 4:
-			System.out.println("enter stock name :");
-			String sellname = stock.scanner.next();
-			System.out.println("enter amount :");
-			int sellamount = stock.scanner.nextInt();
-			stock.buyShare(sellamount, sellname);
+			try {
+				System.out.println("enter stock name :");
+				String sellname = stock.scanner.next();
+				System.out.println("enter amount :");
+				int sellamount = stock.scanner.nextInt();
+				stock.buyShare(sellamount, sellname);
+			} catch (Exception e) {
+				System.out.println("enter correct data...");
+			}
 			customer();
 			break;
 		case 5:
-			System.out.println("enter stock name :");
-			String stockname = stock.scanner.next();
-			System.out.println("enter amount :");
-			int amount = stock.scanner.nextInt();
-			stock.sellShare(amount, stockname);
+			try {
+				System.out.println("enter stock name :");
+				String stockname = stock.scanner.next();
+				System.out.println("enter amount :");
+				int amount = stock.scanner.nextInt();
+				stock.sellShare(amount, stockname);
+			} catch (Exception e) {
+				System.out.println("enter correct type of data...");
+			}
 			customer();
 			break;
 		case 6:
-			System.out.println("enter file name :");
-			String file = stock.scanner.next();
-			stock.saveFile(file);
+			try {
+				System.out.println("enter file name :");
+				String file = stock.scanner.next();
+				stock.saveFile(file);
+			} catch (Exception e) {
+				System.out.println("enter string type of data...");
+			}
 			customer();
 			break;
 		case 7:
