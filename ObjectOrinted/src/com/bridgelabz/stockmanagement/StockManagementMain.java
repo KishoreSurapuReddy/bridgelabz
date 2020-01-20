@@ -2,13 +2,15 @@
  * we also performed updating stock and creating customer account which 
  * having details of customer and stock details
  * @author bridgelabsz
-*/
+ * @version 1.0
+ * @since 16/01/2020
+ * @file StockManagementMain.java
+ */
 package com.bridgelabz.stockmanagement;
 
 import java.io.IOException;
 
 import org.json.simple.parser.ParseException;
-
 
 public class StockManagementMain {
 	static StockManagementDAOImpl stock = new StockManagementDAOImpl();
@@ -26,7 +28,14 @@ public class StockManagementMain {
 		int choice = stock.scanner.nextInt();
 		switch (choice) {
 		case 1:
-			stock.addStock();
+			StockManagement stockdata = new StockManagement();
+			System.out.println("enter the name of stock :");
+			stockdata.setStockName(stock.scanner.next());
+			System.out.println("enter the number of shares :");
+			stockdata.setNumberOfShares(stock.scanner.nextInt());
+			System.out.println("enter the price of each share :");
+			stockdata.setSharePrice(stock.scanner.nextDouble());
+			stock.addStock(stockdata);
 			stock();
 			break;
 		case 2:
