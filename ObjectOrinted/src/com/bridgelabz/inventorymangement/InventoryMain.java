@@ -1,7 +1,10 @@
 /*Purpose:Inventory management is used to add the products into the file and 
  * we can also perform operation like calculating the total value of product
  * @author kishorereddy
-*/
+ * @version 1.0
+ * @since 15/01/2020
+ * @file InventoryMain.java
+ */
 package com.bridgelabz.inventorymangement;
 
 import java.io.IOException;
@@ -9,10 +12,9 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 
 public class InventoryMain {
-
 	InventoryDAOImpl inventory = new InventoryDAOImpl();
-
-	public void menu() throws IOException {
+	InventoryManagement inventorydata;
+	public void mainMenu() throws IOException {
 		System.out.println("--------------------");
 		System.out.println("enter the option.... ");
 		System.out.println("1. add the details.. ");
@@ -22,12 +24,12 @@ public class InventoryMain {
 		int option = inventory.scanner.nextInt();
 		switch (option) {
 		case 1:
-			case1();
-			menu();
+			inventoryMenu();
+			mainMenu();
 			break;
 		case 2:
-			case2();
-			menu();
+			calculation();
+			mainMenu();
 			break;
 		case 3:
 			System.exit(0);
@@ -36,11 +38,8 @@ public class InventoryMain {
 			System.out.println("enter choice 1-3 only");
 			break;
 		}
-
 	}
-
-	public void case2() throws IOException {
-
+	public void calculation() throws IOException {
 		System.out.println("select the calculation choice ");
 		System.out.println("1. rice calulation ");
 		System.out.println("2. wheat calculation ");
@@ -65,7 +64,6 @@ public class InventoryMain {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 			break;
 		case 3:
 			System.out.println("calculation for pulses ");
@@ -75,7 +73,6 @@ public class InventoryMain {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 			break;
 		case 4:
 			System.out.println("calculation for all ");
@@ -86,15 +83,12 @@ public class InventoryMain {
 				e.printStackTrace();
 			}
 			break;
-
 		default:
 			System.out.println("wrong choice");
 			break;
 		}
-
 	}
-
-	public void case1() {
+	public void inventoryMenu() {
 		System.out.println("select the option for which type of product you want ");
 		System.out.println(" 1. Rice ");
 		System.out.println(" 2. Wheats ");
@@ -104,29 +98,48 @@ public class InventoryMain {
 		switch (productOpt) {
 		case 1:
 			System.out.println("add rice details ");
-			inventory.addInventory("Rice");
-
+			inventorydata = new InventoryManagement();
+			System.out.println("enter item name :");
+			inventorydata.setItemName(inventory.scanner.next());
+			System.out.println("enter item weight :");
+			inventorydata.setItemWeight(inventory.scanner.nextDouble());
+			System.out.println("enter item price: ");
+			inventorydata.setItemPrice(inventory.scanner.nextDouble());
+			inventory.addInventory(inventorydata , "Rice");
 			break;
 		case 2:
 			System.out.println("add wheat details ");
-			inventory.addInventory("wheat");
+			inventorydata = new InventoryManagement();
+			System.out.println("enter item name :");
+			inventorydata.setItemName(inventory.scanner.next());
+			System.out.println("enter item weight :");
+			inventorydata.setItemWeight(inventory.scanner.nextDouble());
+			System.out.println("enter item price: ");
+			inventorydata.setItemPrice(inventory.scanner.nextDouble());
+			inventory.addInventory(inventorydata , "wheat");
+			inventory.addInventory(inventorydata,"wheat");
 
 			break;
 		case 3:
 			System.out.println("add pulses details ");
-			inventory.addInventory("pulses");
-
+			inventorydata = new InventoryManagement();
+			System.out.println("enter item name :");
+			inventorydata.setItemName(inventory.scanner.next());
+			System.out.println("enter item weight :");
+			inventorydata.setItemWeight(inventory.scanner.nextDouble());
+			System.out.println("enter item price: ");
+			inventorydata.setItemPrice(inventory.scanner.nextDouble());
+			inventory.addInventory(inventorydata , "pulses");
+			inventory.addInventory(inventorydata,"pulses");
 			break;
 		default:
 			System.out.println("enter choice 1-3 only");
 			break;
-
 		}
 	}
-
 	public static void main(String[] args) throws IOException, ParseException {
-		InventoryMain menu = new InventoryMain();
-		menu.menu();
+		InventoryMain inventory = new InventoryMain();
+		inventory.mainMenu();
 
 	}
 
