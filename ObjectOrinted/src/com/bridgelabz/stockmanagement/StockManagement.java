@@ -1,3 +1,9 @@
+/*purpose:it contains stock details
+ * @author kishorereddy
+ * @version 1.0
+ * @since 16/01/2020
+ * @file StockManagement.java
+ */
 package com.bridgelabz.stockmanagement;
 
 public class StockManagement {
