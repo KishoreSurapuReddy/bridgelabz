@@ -1,3 +1,9 @@
+/*purpose:it contains abstract methods
+ * @author kishorereddy
+ * @version 1.0
+ * @since 16/01/2020
+ * @file StockManagementDAO.java
+ */
 package com.bridgelabz.stockmanagement;
 
 import java.io.FileNotFoundException;
@@ -7,7 +13,7 @@ import org.json.simple.parser.ParseException;
 
 public interface StockManagementDAO {
 	
-	public void addStock() throws IOException, ParseException;
+	public void addStock(StockManagement stock) throws IOException, ParseException;
 	public void viewStock(String stockName) throws IOException, ParseException;
 	public void viewAllStocks() throws IOException, ParseException;
 	public void updateStock(String stockName) throws IOException, ParseException;
