@@ -1,3 +1,9 @@
+/*purpose:it will contain doctor information
+ * @author kishorereddy
+ * @version 1.0
+ * @since 15/01/2020
+ * @file Doctor.java
+ */
 package com.bridgelabz.clinicmanagement;
 
 public class Doctor {
