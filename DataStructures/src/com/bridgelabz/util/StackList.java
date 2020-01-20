@@ -73,8 +73,6 @@ public class StackList<T extends Comparable<T>> {
 
 	/*
 	 * function to implement size of stack
-	 */
-	/**
 	 * @return size of stack
 	 */
 	public int sizeOfStack() {
@@ -85,8 +83,6 @@ public class StackList<T extends Comparable<T>> {
 
 	/*
 	 * function to implement weather stack is empty or not
-	 */
-	/**
 	 * @return weather empty or not
 	 */
 	public boolean isEmptyStack() {
