@@ -162,31 +162,8 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	 * function to implement adding customer account details 
 	 */
 	@Override
-	public void stockAccount() throws IOException, ParseException {
-		int[] shares = new int[2];
-		String[] stocks = new String[2];
-		double[] value = new double[2];
-		CustomerStockAccount customer = new CustomerStockAccount();
-		System.out.println("enter customer name :");
-		customer.setCustomerName(scanner.next());
-		System.out.println("enter customer id:");
-		customer.setCustomerId(scanner.nextInt());
-		System.out.println("enter the names of stocks :");
-		for (int index = 0; index < shares.length; index++) {
-			stocks[index] = scanner.next();
-		}
-		customer.setStockName(stocks);
-		System.out.println("enter the number of shares :");
-		for (int index = 0; index < shares.length; index++) {
-			shares[index] = scanner.nextInt();
-		}
-		customer.setNumberOfShares(shares);
-		System.out.println("enter the value of share :");
-		for (int index = 0; index < shares.length; index++) {
-			value[index] = scanner.nextDouble();
-		}
-		customer.setShareValue(value);
-		customer.toString();
+	public void stockAccount(CustomerStockAccount customer) throws IOException, ParseException {
+		
 		write(customer.getCustomerName(), customer.getCustomerId(), customer.getStockName(),
 				customer.getNumberOfShares(), customer.getShareValue());
 
