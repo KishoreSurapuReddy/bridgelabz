@@ -1,3 +1,9 @@
+/*purpose:it contains customer details
+ * @author kishorereddy
+ * @version 1.0
+ * @since 16/01/2020
+ * @file CustomerStockAccount.java
+ */
 package com.bridgelabz.stockmanagement;
 
 import java.util.Arrays;
