@@ -1,6 +1,12 @@
+/*purpose:it will have a information about person
+ * @author kishorereddy
+ * @version 1.0
+ * @since 14/01/2020
+ * @file Person.java
+ */
 package com.bridgelabz.addressbook;
 
-public class AddressBook {
+public class Person {
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -9,11 +15,11 @@ public class AddressBook {
 	private int zipCode;
 	private long phoneNumber;
 
-	public AddressBook() {
+	public Person() {
 
 	}
 
-	public AddressBook(String firstName, String lastName, String address, String city, String state, int zipCode,
+	public Person(String firstName, String lastName, String address, String city, String state, int zipCode,
 			long phoneNumber) {
 		this.firstName = firstName;
 		this.lastName = lastName;
