@@ -21,8 +21,6 @@ public class BinarySearchTree {
 
 	/*
 	 * function to implement insert node to binary search tree
-	 */
-	/**
 	 * @param item
 	 */
 	public void insertNode(int item) {
@@ -31,8 +29,6 @@ public class BinarySearchTree {
 
 	/*
 	 * fuction to implement insert node at particular position
-	 */
-	/**
 	 * @param root
 	 * @param item
 	 * @return node
@@ -51,11 +47,9 @@ public class BinarySearchTree {
 		}
 		return root;
 	}
-
 	/*
 	 * function to implemet making tree as ordered
 	 */
-
 	public void inOrder() {
 		makeOrdered(head);
 	}
@@ -71,8 +65,6 @@ public class BinarySearchTree {
 
 	/*
 	 * function to find factorial of number
-	 */
-	/**
 	 * @param num
 	 * @return factorial
 	 */
@@ -86,8 +78,6 @@ public class BinarySearchTree {
 
 	/*
 	 * function to implement finding noof trees generate by nodes
-	 */
-	/**
 	 * @param number
 	 * @return noof trees formed
 	 */
