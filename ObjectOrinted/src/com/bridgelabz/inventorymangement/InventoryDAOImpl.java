@@ -1,34 +1,32 @@
+/*purpose:implementing abstract methods
+ * @author kishorereddy
+ * @version 1.0
+ * @since 15/01/2020
+ * @file InventoryDAOImpl.java
+ */
 package com.bridgelabz.inventorymangement;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.bridgelabz.filesystem.FileSystem;
+
 public class InventoryDAOImpl implements InventoryDAO {
-
+	FileSystem file = new FileSystem();
 	Scanner scanner = new Scanner(System.in);
-
 	/*
 	 * function to implement adding inventory to file
 	 */
 	@Override
-	public void addInventory(String item) {
-		JSonInventoryDataManagement inventory = new JSonInventoryDataManagement();
-		System.out.println("enter item name :");
-		inventory.setItemName(scanner.next());
-		System.out.println("enter item weight :");
-		inventory.setItemWeight(scanner.nextDouble());
-		System.out.println("enter item price: ");
-		inventory.setItemPrice(scanner.nextDouble());
+	public void addInventory(InventoryManagement inventory, String inventoryname) {
+		
 		try {
-			writeInventory(item, inventory.getItemName(), inventory.getItemWeight(), inventory.getItemPrice());
+			writeInventory(inventoryname, inventory.getItemName(), inventory.getItemWeight(), inventory.getItemPrice());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -38,7 +36,6 @@ public class InventoryDAOImpl implements InventoryDAO {
 		}
 
 	}
-
 	/*
 	 * function to implement writing inventory to file
 	 */
@@ -46,11 +43,9 @@ public class InventoryDAOImpl implements InventoryDAO {
 	@Override
 	public void writeInventory(String item, String itemName, double itemWeight, double itemPrice)
 			throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/inventory.json");
-			Object object = parser.parse(file);
-			JSONObject jsonobject = (JSONObject) object;
+			String readFile = "/home/bridgelabsz/Desktop/inventory.json";
+			JSONObject jsonobject = file.readFile(readFile);
 			JSONArray array = new JSONArray();
 			JSONObject json = new JSONObject();
 			json.put("itemName", itemName);
@@ -59,28 +54,22 @@ public class InventoryDAOImpl implements InventoryDAO {
 			array.add(json);
 			System.out.println(array);
 			jsonobject.put(item, array);
-			FileWriter filewriter = new FileWriter("/home/bridgelabsz/Desktop/inventory.json");
-			filewriter.write(jsonobject.toJSONString());
-			filewriter.close();
+			String writeFile =  "/home/bridgelabsz/Desktop/inventory.json";
+			file.writeFile(writeFile,jsonobject);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
-
 	/*
 	 * function to implement reading inventory to file
 	 */
 	@Override
 	public double readInventory(String item) throws IOException, ParseException {
 		double total = 0;
-		JSONParser parser = new JSONParser();
-		FileReader file;
 		try {
-			file = new FileReader("/home/bridgelabsz/Desktop/inventory.json");
-			Object object = parser.parse(file);
-			JSONObject jsonobject = (JSONObject) object;
+			String readFile = "/home/bridgelabsz/Desktop/inventory.json";
+			JSONObject jsonobject = file.readFile(readFile);
 			if (item.equals("All")) {
 				JSONArray array = (JSONArray) jsonobject.get("Rice");
 				total = total + calItem(array);
@@ -88,7 +77,6 @@ public class InventoryDAOImpl implements InventoryDAO {
 				total = total + calItem(array);
 				array = (JSONArray) jsonobject.get("wheat");
 				total = total + calItem(array);
-
 			} else {
 				JSONArray array = (JSONArray) jsonobject.get(item);
 				total = total + calItem(array);
@@ -98,23 +86,18 @@ public class InventoryDAOImpl implements InventoryDAO {
 			e.printStackTrace();
 		}
 		return total;
-
 	}
-
 	/*
 	 * function to implement calculating inventory to file
 	 */
-	@SuppressWarnings("rawtypes")
 	@Override
 	public double calItem(JSONArray array) {
 		double calculation = 0;
 		JSONObject jsonobject = (JSONObject) array.get(0);
-		long itemWeight = (long) jsonobject.get("itemWeight");
-		long itemPrice = (long) jsonobject.get("itemPrice");
+		double itemWeight =  (double) jsonobject.get("itemWeight");
+		double itemPrice = (double) jsonobject.get("itemPrice");
 		calculation = calculation + (itemWeight * itemPrice);
-
 		return calculation;
-
 	}
 
 }
