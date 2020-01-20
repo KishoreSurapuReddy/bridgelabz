@@ -15,7 +15,6 @@ public class DeQueueList<T extends Comparable<T>> {
 
 	/*
 	 * function to implement add character to dequeue in rear end
-	 * 
 	 * @param data
 	 */
 	public void addRear(char data) {
@@ -33,8 +32,7 @@ public class DeQueueList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * function to implement add character to dequeue in front end
-	 * 
+	 * function to implement add character to dequeue in front en
 	 * @param data
 	 */
 	public void addFront(char data) {
@@ -49,7 +47,6 @@ public class DeQueueList<T extends Comparable<T>> {
 
 	/*
 	 * function to implement remove character at front end
-	 * 
 	 * @param data
 	 */
 	@SuppressWarnings("unchecked")
@@ -70,8 +67,7 @@ public class DeQueueList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * function to implement remove character at rear end
-	 * 
+	 * function to implement remove character at rear end 
 	 * @param data
 	 */
 	@SuppressWarnings("unchecked")
@@ -92,8 +88,7 @@ public class DeQueueList<T extends Comparable<T>> {
 	}
 
 	/*
-	 * function to implement return the size of dequeue
-	 * 
+	 * function to implement return the size of dequeue 
 	 * @return size of dequeue
 	 */
 	public int deQueueSize() {
@@ -104,7 +99,6 @@ public class DeQueueList<T extends Comparable<T>> {
 
 	/*
 	 * function to implement dequeue is empty or not
-	 * 
 	 * @return isDequeueEmpty or not
 	 */
 	public boolean isDequeEmpty() {
