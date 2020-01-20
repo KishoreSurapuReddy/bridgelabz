@@ -1,7 +1,12 @@
+/*purpose:implementing abstract methods
+ * @author kishorereddy
+ * @version 1.0
+ * @since 16/01/2020
+ * @file StockManagementDAOImpl.java
+ */
 package com.bridgelabz.stockmanagement;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,24 +16,22 @@ import java.util.Scanner;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import com.bridgelabz.filesystem.FileSystem;
 
 public class StockManagementDAOImpl implements StockManagementDAO {
 	Scanner scanner = new Scanner(System.in);
+	FileSystem file = new FileSystem();
 	List<String> stocks = new ArrayList<String>();
+	String stockFile = "/home/bridgelabsz/Desktop/stocks.json";
+	String customerFile = "/home/bridgelabsz/Desktop/customer.json";
 	/*
 	 * function to implement adding Stock to file
 	 */
 	@Override
-	public void addStock() throws IOException, ParseException {
-		StockManagement stock = new StockManagement();
-		System.out.println("enter the name of stock :");
-		stock.setStockName(scanner.next());
-		System.out.println("enter the number of shares :");
-		stock.setNumberOfShares(scanner.nextInt());
-		System.out.println("enter the price of each share :");
-		stock.setSharePrice(scanner.nextDouble());
+	public void addStock(StockManagement stock) throws IOException, ParseException {
+		
 		writeIntoFile(stock.getStockName(), stock.getNumberOfShares(), stock.getSharePrice());
 
 	}
@@ -38,11 +41,9 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void viewStock(String stockName) throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/stocks.json");
-			Object object = parser.parse(file);
-			JSONObject jsonobject = (JSONObject) object;
+			String  readfile = stockFile;
+			JSONObject jsonobject = file.readFile(readfile);
 			JSONArray array = (JSONArray) jsonobject.get(stockName);
 			if (array != null) {
 				Iterator iterator = array.iterator();
@@ -62,11 +63,10 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	 */
 	@Override
 	public void viewAllStocks() throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
+		
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/stocks.json");
-			Object object = parser.parse(file);
-			JSONObject json = (JSONObject) object;
+			String  readFile = stockFile;
+			JSONObject json = file.readFile(readFile);
 			System.out.println(json);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -80,11 +80,9 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void updateStock(String stockName) throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/stocks.json");
-			Object object = parser.parse(file);
-			JSONObject jsonobject = (JSONObject) object;
+			String  readFile = stockFile;
+			JSONObject jsonobject = file.readFile(readFile);
 			if (jsonobject.get(stockName) != null) {
 				JSONArray array = (JSONArray) jsonobject.get(stockName);
 				JSONObject data = (JSONObject) array.get(0);
@@ -107,9 +105,8 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 				});
 				System.out.println("after updating ");
 				data.forEach((key, value) -> System.out.println(key + "\t\t" + value));
-				FileWriter filewriter = new FileWriter("/home/bridgelabsz/Desktop/stocks.json");
-				filewriter.write(data.toJSONString());
-				filewriter.close();
+				String filewriter = stockFile;
+				file.writeFile(filewriter , data);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -122,16 +119,13 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	 */
 	@Override
 	public void deleteStock(String stockName) throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/stocks.json");
-			Object object = parser.parse(file);
-			JSONObject json = (JSONObject) object;
+			String  readFile = stockFile;
+			JSONObject json = file.readFile(readFile);
 			json.get(stockName);
 			json.remove(stockName);
-			FileWriter filewriter = new FileWriter("/home/bridgelabsz/Desktop/stocks.json");
-			filewriter.write(json.toJSONString());
-			filewriter.close();
+			String filewriter = stockFile;
+			file.writeFile(filewriter , json);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -145,11 +139,9 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	@Override
 	public void writeIntoFile(String stockName, int numberOfShares, double sharePrice)
 			throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/stocks.json");
-			Object object = parser.parse(file);
-			JSONObject json = (JSONObject) object;
+			String  readFile = stockFile;
+			JSONObject json = file.readFile(readFile);
 			JSONArray array = new JSONArray();
 			JSONObject jsonob = new JSONObject();
 			jsonob.put("stockName", stockName);
@@ -158,9 +150,8 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 			array.add(jsonob);
 			System.out.println(array);
 			json.put(stockName, array);
-			FileWriter writer = new FileWriter("/home/bridgelabsz/Desktop/stocks.json");
-			writer.write(json.toJSONString());
-			writer.close();
+			String filewriter = stockFile;
+			file.writeFile(filewriter , json);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -205,12 +196,11 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	 */
 	@Override
 	public int[] valueOfAccount(String customerName) throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
+		
 		int[] total = new int[2];
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/customer.json");
-			Object object = parser.parse(file);
-			JSONObject json = (JSONObject) object;
+			String readFile = customerFile;
+			JSONObject json = file.readFile(readFile);
 			if (json.get(customerName) != null) {
 				JSONArray array = (JSONArray) json.get(customerName);
 				total = calShare(array);
@@ -245,12 +235,10 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void buyShare(int amount, String stockName) throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
 		int numberofshares = 0;
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/stocks.json");
-			Object object = parser.parse(file);
-			JSONObject json = (JSONObject) object;
+			String readFile = stockFile;
+			JSONObject json = file.readFile(readFile);
 			JSONArray array = (JSONArray) json.get(stockName);
 			JSONObject jsonob = (JSONObject) array.get(0);
 			System.out.println("data is:" + jsonob);
@@ -266,14 +254,13 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 				JSONObject objectupdate = new JSONObject();
 				arrayupdate.add(jsonob);
 				objectupdate.put(stockName, array);
-				FileWriter writer = new FileWriter("/home/bridgelabsz/Desktop/stocks.json");
-				writer.write(objectupdate.toJSONString());
-				writer.close();
+				String  writer = stockFile;
+				file.writeFile(writer, objectupdate);
 			} else {
 				System.out.println("file is empty ");
 			}
-			FileReader customer = new FileReader("/home/bridgelabsz/Desktop/customer.json");
-			JSONObject jsoncustomer = (JSONObject) parser.parse(customer);
+			String customerfile = customerFile;
+			JSONObject jsoncustomer = file.readFile(customerfile);
 			System.out.println("enter customer name :");
 			String namecustomer = scanner.next();
 			JSONArray arraycustomer = (JSONArray) jsoncustomer.get(namecustomer);
@@ -302,9 +289,8 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 			JSONObject customerobject = new JSONObject();
 			customerupdate.add(jsonupdate);
 			customerobject.put(namecustomer, customerupdate);
-			FileWriter customerfile = new FileWriter("/home/bridgelabsz/Desktop/customer.json");
-			customerfile.write(customerobject.toJSONString());
-			customerfile.close();
+			String filewriter = customerFile;
+			file.writeFile(filewriter, customerobject);
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -319,9 +305,8 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	@Override
 	public void sellShare(int amount, String stockName) throws IOException, ParseException {
 		int numberofshares = 0;
-		JSONParser parser = new JSONParser();
-		FileReader customer = new FileReader("/home/bridgelabsz/Desktop/customer.json");
-		JSONObject jsoncustomer = (JSONObject) parser.parse(customer);
+		String readFile = customerFile;
+		JSONObject jsoncustomer = file.readFile(readFile);
 		System.out.println("enter customer name :");
 		String namecustomer = scanner.next();
 		JSONArray arraycustomer = (JSONArray) jsoncustomer.get(namecustomer);
@@ -350,9 +335,8 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 		JSONObject customerobject = new JSONObject();
 		customerupdate.add(jsonupdate);
 		customerobject.put(namecustomer, customerupdate);
-		FileWriter customerfile = new FileWriter("/home/bridgelabsz/Desktop/customer.json");
-		customerfile.write(customerobject.toJSONString());
-		customerfile.close();
+		String customerfile = customerFile;
+		file.writeFile(customerfile, customerobject);
 
 	}
 	/*
@@ -360,10 +344,8 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	 */
 	@Override
 	public void saveFile(String fileName) throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
-		FileReader file = new FileReader("/home/bridgelabsz/Desktop/customer.json");
-		Object object = parser.parse(file);
-		JSONObject json = (JSONObject) object;
+		String readFile = customerFile;
+		JSONObject json = file.readFile(readFile);
 		FileWriter writer = new FileWriter("/home/bridgelabsz/Desktop/" + fileName + ".json");
 		writer.write(json.toJSONString());
 		writer.close();
@@ -373,11 +355,10 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	 */
 	@Override
 	public void printReport(String customerName) throws IOException, ParseException {
-		JSONParser parser = new JSONParser();
+		
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/customer.json");
-			Object object = parser.parse(file);
-			JSONObject json = (JSONObject) object;
+			String readFile = customerFile;
+			JSONObject json = file.readFile(readFile);
 			if (json.get(customerName) != null) {
 				JSONArray array = (JSONArray) json.get(customerName);
 				// JSONObject jsonob = (JSONObject) array.get(0);
@@ -397,12 +378,10 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 	public void write(String customerName, int customerId, String[] stockName, int[] numberOfshares,
 			double[] shareValue) throws IOException, ParseException {
 
-		JSONParser parser = new JSONParser();
 		System.out.println(stockName.toString());
 		try {
-			FileReader file = new FileReader("/home/bridgelabsz/Desktop/customer.json");
-			Object object = parser.parse(file);
-			JSONObject json = (JSONObject) object;
+			String readFile = customerFile;
+			JSONObject json = file.readFile(readFile);
 			JSONArray array = new JSONArray();
 			JSONObject jsonob = new JSONObject();
 			jsonob.put("customerName", customerName);
@@ -413,9 +392,8 @@ public class StockManagementDAOImpl implements StockManagementDAO {
 			array.add(jsonob);
 			System.out.println(array.toString());
 			json.put(customerName, array);
-			FileWriter writer = new FileWriter("/home/bridgelabsz/Desktop/customer.json");
-			writer.write(json.toJSONString());
-			writer.close();
+			String writerfile = customerFile;
+			file.writeFile(writerfile, json);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
