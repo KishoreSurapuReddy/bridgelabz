@@ -1,6 +1,12 @@
+/*purpose:it will have inventory item details
+ * @author kishorereddy
+ * @version 1.0
+ * @since 15/01/2020
+ * @file InventoryManagement.java
+ */
 package com.bridgelabz.inventorymangement;
 
-public class JSonInventoryDataManagement {
+public class InventoryManagement {
 	
 	String itemName;
 	double itemWeight;
