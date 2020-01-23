@@ -1,3 +1,9 @@
+/*purpose:Student class to maintain student details
+ * @author kishorereddy
+ * @version 1.0
+ * @since 22/01/2020
+ * @file Student.java
+*/
 package com.bridgelabz.prototype;
 
 public class Student {
