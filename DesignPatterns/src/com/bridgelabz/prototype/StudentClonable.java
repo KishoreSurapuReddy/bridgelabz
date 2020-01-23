@@ -1,3 +1,9 @@
+/*purpose:To maintain student details 
+ * @author kishorereddy
+ * @version 1.0
+ * @since 22/01/2020
+ * @file StudentClonable.java
+*/
 package com.bridgelabz.prototype;
 
 import java.util.ArrayList;
