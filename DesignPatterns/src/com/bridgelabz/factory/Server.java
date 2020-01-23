@@ -1,3 +1,9 @@
+/*purpose:Server class implementing Computer interface
+ * @author kishorereddy
+ * @version 1.0
+ * @since 22/01/2020
+ * @file Server.java
+*/
 package com.bridgelabz.factory;
 
 public class Server extends Computer {
@@ -5,7 +11,7 @@ public class Server extends Computer {
 	private String ram;
 	private String hdd;
 	private String cpu;
-	
+	//constructor
 	public Server(String ram, String hdd, String cpu) {
 		this.ram = ram;
 		this.hdd = hdd;
