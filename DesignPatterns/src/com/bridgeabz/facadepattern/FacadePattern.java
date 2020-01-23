@@ -1,9 +1,15 @@
+/*purpose:Facadepattern to interact with interfaces
+ * @author kishorereddy
+ * @version 1.0
+ * @since 22/01/2020
+ * @file FacadePattern.java
+*/
 package com.bridgeabz.facadepattern;
 
 public class FacadePattern {
-	IPhone iphone;
-	Moto moto;
-	Nokia nokia;
+	Phone iphone;
+	Phone moto;
+	Phone nokia;
 	public FacadePattern() {
 		iphone = new IPhone();
 		moto = new Moto();
