@@ -1,3 +1,9 @@
+/*purpose:PC class implementing Computer Interface 
+ * @author kishorereddy
+ * @version 1.0
+ * @since 22/01/2020
+ * @file PC.java
+*/
 package com.bridgelabz.factory;
 
 public class PC extends Computer {
@@ -5,7 +11,7 @@ public class PC extends Computer {
 	private String ram;
 	private String hdd;
 	private String cpu;
-
+    //constructor
 	public PC(String ram, String hdd, String cpu) {
 		this.ram = ram;
 		this.hdd = hdd;
